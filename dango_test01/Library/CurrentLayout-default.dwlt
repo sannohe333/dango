@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 1082
-    y: 658
+    x: 227
+    y: 682
     width: 838
     height: 392
   m_ShowMode: 0
@@ -43,7 +43,7 @@ MonoBehaviour:
     width: 1871
     height: 976
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 14}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -475,8 +475,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1082
-    y: 658
+    x: 227
+    y: 682
     width: 838
     height: 371
   m_ViewDataDictionary: {fileID: 0}
@@ -884,10 +884,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 69}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff000000003a3d0000e0400000e2400000e4400000e6400000e8400000ea400000ec400000ee400000f0400000f2400000
+    m_ExpandedIDs: ffffffff000000003a3d0000e0400000e2400000e4400000e6400000e840000040410000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
