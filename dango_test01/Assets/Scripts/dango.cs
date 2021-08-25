@@ -131,7 +131,7 @@ public class dango : MonoBehaviour
         
         //台から落下判定
         if(!fall_st){
-            if(transform.position.y<0){
+            if(transform.position.y<=0.2f){
                 sound.audioSource.PlayOneShot(sound.sound3,0.01f);
 
                 Arrow_L.SetActive(false);
@@ -148,6 +148,7 @@ public class dango : MonoBehaviour
         }else{
             //float f=2f;
             transform.Rotate(4f, 0f, 0f);
+            transform.Translate (0, -0.1f, 0, Space.World);
         }
 
         //台から落ちたダンゴムシは削除

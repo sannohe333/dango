@@ -23,12 +23,14 @@ public class dango_goal : MonoBehaviour
     void clear_obj()
     {
         //FindObjectOfType<Score>().AddPoint(1);
+        Score=GameObject.Find("Canvas/ScorePanel").gameObject.GetComponent<Score>();
         Score.AddPoint(1);
         Destroy(root);
     }
 
     void dead_obj()
     {
+        Score=GameObject.Find("Canvas/ScorePanel").gameObject.GetComponent<Score>();
         Score.deleteCnt();
         Destroy(root);
     }
