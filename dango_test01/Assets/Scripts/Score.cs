@@ -73,6 +73,14 @@ public class Score : MonoBehaviour
     public void deleteCnt()
     {
         delete_cnt++;
+
+        //ノルマが達成できないとき
+        if(delete_cnt>(main_ctr.DangoCntList[main_ctr.stage_num-1]-main_ctr.DangoNormList[main_ctr.stage_num-1])+1){
+            main_ctr.gameover_st=true;
+            if(!gameover_logo.activeSelf){
+                gameover_logo.SetActive(true);
+            }
+        }
         //Debug.Log("delete:"+delete_cnt+" :dango_cnt : "+main_ctr.dango_cnt);
     }
 
