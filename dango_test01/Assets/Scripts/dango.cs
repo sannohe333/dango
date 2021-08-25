@@ -29,10 +29,15 @@ public class dango : MonoBehaviour
     //落下判定
     private bool fall_st; 
 
+    //リジッドボディ
     public Rigidbody rb;
-
+　　
+    //各種コライダー（通常時/丸まり時）
     private BoxCollider col1;
     private SphereCollider col2;
+
+    //トレイル
+    private TrailRenderer tr;
 
     private GameObject dango_def;
     private GameObject dango_maru;
@@ -93,6 +98,9 @@ public class dango : MonoBehaviour
         //コライダ２（球体）を取得
         col2= GetComponent<SphereCollider>();
         col2.enabled = true;
+
+        tr=dango_maru.GetComponent<TrailRenderer>();
+        tr.enabled = false;
         
         //矢印オブジェクト（左）を取得
         Arrow_L=transform.Find("arrow_l").gameObject;
@@ -131,6 +139,8 @@ public class dango : MonoBehaviour
 
                 //回転の制限を解除（Constraints制御）
                 rb.constraints = RigidbodyConstraints.None ;
+
+                tr.enabled = false;
                 
                 fall_st=true;
             }     
@@ -186,6 +196,8 @@ public class dango : MonoBehaviour
             col2.enabled = false;
             start_st=true;
             move_st=true;
+            //tr=dango_maru.GetComponent<TrailRenderer>();
+            tr.enabled = true;
             restart();
         
         }
