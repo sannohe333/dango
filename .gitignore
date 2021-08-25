@@ -61,3 +61,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# ユーザー設定ファイルっぽいので無視する　20210825　kato
+.UserSettings\EditorUserSettings.asset
