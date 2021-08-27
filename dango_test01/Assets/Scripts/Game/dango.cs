@@ -68,6 +68,7 @@ public class dango : MonoBehaviour
 
         //SEスクリプトアクセス用
         sound=GameObject.Find("se_object").gameObject.GetComponent<Sound>();
+        
 
         //子オブジェクトを検索
         dango_def=transform.Find("dango_def").gameObject;

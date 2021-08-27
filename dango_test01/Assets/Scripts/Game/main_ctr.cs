@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class main_ctr : MonoBehaviour
 {
@@ -65,6 +66,15 @@ public class main_ctr : MonoBehaviour
     //天敵プレファブリスト
     public List<GameObject> EnemyList = new List<GameObject>();
 
+    void Awake()
+    {
+         /** 既にシーンが読み込まれているかどうか */
+        if (!SceneController.AlreadyLoadScene("Common"))
+        {
+           SceneManager.LoadScene("Common", LoadSceneMode.Additive);
+        }
+    }
+
     //public float deleteTime = 0.5f;
 
     // Start is called before the first frame update
@@ -87,7 +97,8 @@ public class main_ctr : MonoBehaviour
         cam_obj=GameObject.Find("camera_pos").gameObject;
 
         //Debug.Log("ステージ数="+StageList.Count);
-        
+
+        //Debug.Log ("tes="+GameManager.Instance.tes);
         
     }
 
@@ -258,7 +269,9 @@ public class main_ctr : MonoBehaviour
                 copied.transform.Rotate(0, 180, 0);
                 
             }
+
         }
+        copied.transform.SetParent(Stage.transform, false);
 
     }
 

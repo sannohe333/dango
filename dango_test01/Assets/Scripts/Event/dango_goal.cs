@@ -13,7 +13,8 @@ public class dango_goal : MonoBehaviour
     void Start()
     {
         //自らの親オブジェクト
-        root = transform.root.gameObject ;
+        //root = transform.root.gameObject ;
+        root = transform.parent.gameObject ;
 
         Score=GameObject.Find("Canvas/ScorePanel").gameObject.GetComponent<Score>();
         //Debug.Log(transform.root.gameObject);
