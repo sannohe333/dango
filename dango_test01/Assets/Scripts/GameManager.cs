@@ -3,15 +3,24 @@ using System.Collections;
 
 public class GameManager : SingletonMonoBehaviour<GameManager> {
 
-    public int tes;
+    //プレイするステージ
+    public int stage_st;
+
+    //クリアーしたステージ
+    public int clear_stage_st;
+
+    //初オープンステージ
+    public bool first_open;
 
     void Start()
     {
-        tes=128;
+        stage_st=0;
+        clear_stage_st=0;
+        first_open=false;
     }
 
-    public void Test(){
-        
-        //Debug.Log ("シングルトン！");
+    void Update()
+    {
+        //Debug.Log("stage_st="+stage_st+" : clear_stage_st="+clear_stage_st);
     }
 }

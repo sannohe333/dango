@@ -29,8 +29,8 @@ public class Score : MonoBehaviour
     {
         main_ctr=GameObject.Find("ctr_obj").gameObject.GetComponent<main_ctr>();
         score = 0;
-        norm_score = main_ctr.DangoNormList[0];
-        scoreText2.text = main_ctr.DangoNormList[0].ToString();
+        norm_score = main_ctr.DangoNormList[main_ctr.stage_num-1];
+        scoreText2.text = main_ctr.DangoNormList[main_ctr.stage_num-1].ToString();
         clear_logo.SetActive(false);
         gameover_logo.SetActive(false);
         

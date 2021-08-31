@@ -7,22 +7,11 @@ using System;
 
 public class Title : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        // クラス名.Instance.関数
-        //GameManager.Instance.Test ();
-        //Debug.Log ("tes="+GameManager.Instance.tes);
-    }
 
     void Awake()
     {
          /** 既にシーンが読み込まれているかどうか */
-        /*public static bool AlreadyLoadScene(string name)
-        {
-            return SceneManager.GetAllScenes()
-                .Any(scene => scene.name == name);
-        }*/
+
         if (!SceneController.AlreadyLoadScene("Common"))
         {
            SceneManager.LoadScene("Common", LoadSceneMode.Additive);

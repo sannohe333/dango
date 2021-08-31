@@ -73,6 +73,7 @@ public class main_ctr : MonoBehaviour
         {
            SceneManager.LoadScene("Common", LoadSceneMode.Additive);
         }
+
     }
 
     //public float deleteTime = 0.5f;
@@ -80,8 +81,21 @@ public class main_ctr : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //GameManagerが初期値の場合
+        if(GameManager.Instance.stage_st==0){
+            GameManager.Instance.stage_st=1;
+        }
+
+        if(GameManager.Instance.clear_stage_st==0){
+            GameManager.Instance.clear_stage_st=1;
+        }
+
+        //ステージナンバー参照
+        stage_num=GameManager.Instance.stage_st; 
+
+        
         state=0;
-        stage_num=1;
+        //stage_num=1;
         enemy_st=false;
         camset=false;
         clear_st=false;
@@ -194,10 +208,21 @@ public class main_ctr : MonoBehaviour
                     //Time.timeScale = 10f;
                     ui_fade.GetComponent<Animator>().Play("fade_out");
                     Timer.timerActive=false;
-                    if(stage_num==StageList.Count){
-                        stage_num=1;
+                    /*if(stage_num==StageList.Count){
+                        //stage_num=1;
+                        GameManager.Instance.clear_stage_st=stage_num;
+
                     }else{
-                        stage_num++;    
+                        //stage_num++;
+                        GameManager.Instance.clear_stage_st=stage_num+1;
+                    }*/
+                    if(stage_num!=StageList.Count){
+                        
+                        if(GameManager.Instance.clear_stage_st==stage_num){
+                            GameManager.Instance.clear_stage_st=stage_num+1;
+                            GameManager.Instance.first_open=true;
+                        }
+
                     }
                     
                     state=50;
@@ -225,9 +250,19 @@ public class main_ctr : MonoBehaviour
                    Score.ScoreReset(stage_num);
                    Timer.seconds = 0f;
                    Timer.timerText.text =Timer.seconds.ToString("F1")+"sec";
-                   state=0;
+                   state=60;
 
                 }
+                break;
+            case 60:
+
+                if (SceneController.AlreadyLoadScene("Game"))
+                {
+                    SceneManager.UnloadSceneAsync("Game");
+                }
+                SceneManager.LoadScene("StageSelect", LoadSceneMode.Additive);
+
+                
                 break;
             default:
                 
