@@ -22,12 +22,15 @@ public class but_event : MonoBehaviour
                 if(transform.parent.gameObject.name=="stage_panel1"){
                     GameManager.Instance.stage_st=1;
                 }else if(transform.parent.gameObject.name=="stage_panel2"){
-                    GameManager.Instance.stage_st=2;
-                    
+                    GameManager.Instance.stage_st=2;   
                 }else if(transform.parent.gameObject.name=="stage_panel3"){
                     GameManager.Instance.stage_st=3;
                 }else if(transform.parent.gameObject.name=="stage_panel4"){
                     GameManager.Instance.stage_st=4;
+                }else if(transform.parent.gameObject.name=="stage_panel5"){
+                    GameManager.Instance.stage_st=5;
+                }else if(transform.parent.gameObject.name=="stage_panel6"){
+                    GameManager.Instance.stage_st=6;
                 }
 
                 SceneManager.LoadScene("Game", LoadSceneMode.Additive);
