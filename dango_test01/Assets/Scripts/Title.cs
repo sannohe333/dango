@@ -21,9 +21,9 @@ public class Title : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        /*if(Input.GetMouseButtonDown(0))
         {
-            /** 既にシーンが読み込まれているかどうか */
+            //既にシーンが読み込まれているかどうか
            
             if (SceneController.AlreadyLoadScene("Title"))
             {
@@ -31,6 +31,6 @@ public class Title : MonoBehaviour
             }
             
             SceneManager.LoadScene("StageSelect", LoadSceneMode.Additive);
-        }
+        }*/
     }
 }

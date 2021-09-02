@@ -14,10 +14,27 @@ public class but_event : MonoBehaviour
                 SceneManager.UnloadSceneAsync("StageSelect");
             }
 
+            if (SceneController.AlreadyLoadScene("Collection"))
+            {
+                SceneManager.UnloadSceneAsync("Collection");
+            }
+
+            if (SceneController.AlreadyLoadScene("Title"))
+            {
+                SceneManager.UnloadSceneAsync("Title");
+            }
+                 
+
            if(transform.parent.gameObject.name=="title"){
                 //タイトルへボタン
                 SceneManager.LoadScene("title", LoadSceneMode.Additive);
-            }else{
+            }else if(transform.parent.gameObject.name=="game"){
+                //ゲームスタートボタン
+                SceneManager.LoadScene("StageSelect", LoadSceneMode.Additive);
+            }else if(transform.parent.gameObject.name=="collection"){
+                //コレクションボタン
+                SceneManager.LoadScene("Collection", LoadSceneMode.Additive);
+            }else {
                 //各ステージボタン
                 if(transform.parent.gameObject.name=="stage_panel1"){
                     GameManager.Instance.stage_st=1;

@@ -16,7 +16,10 @@ public class main_ctr : MonoBehaviour
     private GameObject cam_obj;
 
     //ダンゴムシプレハブ
-    public GameObject dango;
+    //public GameObject dango;
+
+    //ステージ別ダンゴムシの数リスト
+    public List<GameObject> DangoTypeList = new List<GameObject>();
 
     //フェードエフェクト
     public GameObject ui_fade;
@@ -274,7 +277,17 @@ public class main_ctr : MonoBehaviour
 
     //ダンゴムシ生成メソッド
     void dango_born(){
-        GameObject copied = Object.Instantiate(dango) as GameObject;
+
+        GameObject copied;
+
+        int f1=Random.Range(0,10);
+
+        if(f1==0){
+            copied = Object.Instantiate(DangoTypeList[1]) as GameObject;
+        }else{
+            copied = Object.Instantiate(DangoTypeList[0]) as GameObject;
+        }
+        
 
         if(stage_size_st==0){
             

@@ -38,5 +38,11 @@ public class UnityMenu : MonoBehaviour
 		Open("Assets/Scenes/Game.unity");
 	}
 
+	[MenuItem("シーン選択/コレクション")]
+	private static void OpenCollection()
+	{
+		Open("Assets/Scenes/Collection.unity");
+	}
+
 #endif
 }

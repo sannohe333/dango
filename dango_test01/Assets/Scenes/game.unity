@@ -1336,7 +1336,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 4542503602637027512, guid: 4aaa33906890bdb47a7e4492e1d0dd22, type: 3}
-  dango: {fileID: 2088632208750706355, guid: 867435f5b0c27bb479ab1c29666b3c2b, type: 3}
+  DangoTypeList:
+  - {fileID: 2088632208750706355, guid: 867435f5b0c27bb479ab1c29666b3c2b, type: 3}
+  - {fileID: 7602372871042069781, guid: 8d147bc0cda6f5b47a8dd55ac5b8da72, type: 3}
   ui_fade: {fileID: 226380901}
   clear_st: 0
   gameover_st: 0
