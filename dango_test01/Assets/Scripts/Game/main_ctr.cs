@@ -24,6 +24,9 @@ public class main_ctr : MonoBehaviour
     //フェードエフェクト
     public GameObject ui_fade;
 
+    //ポーズメニュー
+    public GameObject pose_menu_obj;
+
     //public int dango_cnt;
 
     //クリアーフラグ
@@ -33,6 +36,14 @@ public class main_ctr : MonoBehaviour
     //ゲームオーバーフラグ
     [HideInInspector]
     public bool gameover_st;
+
+    //リトライフラグ
+    [HideInInspector]
+    public bool retry_st;
+
+    //ステージセレクトへ戻るフラグ
+    [HideInInspector]
+    public bool stageselect_st;
 
 　　//カメラ位置調整用
     private bool camset;
@@ -102,6 +113,8 @@ public class main_ctr : MonoBehaviour
         enemy_st=false;
         camset=false;
         clear_st=false;
+        retry_st=false;
+        stageselect_st=false;
         gameover_st=false;
 
         //スコアスクリプトアクセス用
@@ -238,13 +251,17 @@ public class main_ctr : MonoBehaviour
                     state=50;
                 }
 
+                if(retry_st||stageselect_st){
+                    state=51;
+                }
+
                 break;
             case 50:
 
                 if(Input.GetMouseButtonDown(0))
                 {
                    //リセット
-                   GameObject stage = GameObject.Find("stage").gameObject;
+                   /*GameObject stage = GameObject.Find("stage").gameObject;
                    GameObject stage_child = stage.transform.GetChild(0).gameObject;
                    Destroy(stage_child);
                    ui_fade.GetComponent<Animator>().Play("fade_def");
@@ -252,10 +269,45 @@ public class main_ctr : MonoBehaviour
                    gameover_st=false;
                    Score.ScoreReset(stage_num);
                    Timer.seconds = 0f;
-                   Timer.timerText.text =Timer.seconds.ToString("F1")+"sec";
-                   state=60;
+                   Timer.timerText.text =Timer.seconds.ToString("F1")+"sec";*/
+                   state=51;
 
                 }
+                break;
+            case 51:
+
+                //リセット
+                //GameObject stage = GameObject.Find("stage").gameObject;
+                //GameObject stage_child = stage.transform.GetChild(0).gameObject;
+                //Destroy(stage_child);
+                
+                //Stage以下の子を全削除
+                foreach (Transform child in Stage.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+                
+                ui_fade.GetComponent<Animator>().Play("fade_def");
+                clear_st=false;
+                gameover_st=false;
+                Score.ScoreReset(stage_num);
+                Timer.seconds = 0f;
+                Timer.timerText.text =Timer.seconds.ToString("F1")+"sec";
+                
+                state=52;
+
+                break;
+            case 52:
+
+                if(retry_st){
+                    //リトライの場合
+                    retry_st=false;
+                    state=0;
+                }else{
+                    //ステージセレクトへ
+                    state=60;
+                }
+
                 break;
             case 60:
 
