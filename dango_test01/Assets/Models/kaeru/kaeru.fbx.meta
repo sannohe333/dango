@@ -2,7 +2,25 @@ fileFormatVersion: 2
 guid: 8279379f1da079847a08fe40d3f9a7f7
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 6396828155121186910
+    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Attack"
+  - first:
+      74: 7030595305835825932
+    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Chewing"
+  - first:
+      74: 3284188779437416314
+    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Jump"
+  - first:
+      74: -960081853429349833
+    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|PoseLib"
+  - first:
+      74: 1161648094311665223
+    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Wait"
+  - first:
+      74: -2054729920978899392
+    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Walk"
   externalObjects:
   - first:
       type: UnityEngine:Material
