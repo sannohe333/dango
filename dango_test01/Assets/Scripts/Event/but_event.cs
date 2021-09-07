@@ -48,6 +48,18 @@ public class but_event : MonoBehaviour
                     GameManager.Instance.stage_st=5;
                 }else if(transform.parent.gameObject.name=="stage_panel6"){
                     GameManager.Instance.stage_st=6;
+                }else if(transform.parent.gameObject.name=="stage_panel7"){
+                    GameManager.Instance.stage_st=7;
+                }else if(transform.parent.gameObject.name=="stage_panel8"){
+                    GameManager.Instance.stage_st=8;
+                }else if(transform.parent.gameObject.name=="stage_panel9"){
+                    GameManager.Instance.stage_st=9;
+                }else if(transform.parent.gameObject.name=="stage_panel10"){
+                    GameManager.Instance.stage_st=10;
+                }else if(transform.parent.gameObject.name=="stage_panel11"){
+                    GameManager.Instance.stage_st=11;
+                }else if(transform.parent.gameObject.name=="stage_panel12"){
+                    GameManager.Instance.stage_st=12;
                 }
 
                 SceneManager.LoadScene("Game", LoadSceneMode.Additive);

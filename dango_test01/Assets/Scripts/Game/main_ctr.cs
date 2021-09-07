@@ -75,7 +75,10 @@ public class main_ctr : MonoBehaviour
     private int stage_size_st;
     
     //天敵のON/OFF
-    private bool enemy_st;
+    //private bool enemy_st;
+
+    //ステージ別天敵リスト
+    public List<int> EnemyEntryList = new List<int>();
 
     //天敵プレファブリスト
     public List<GameObject> EnemyList = new List<GameObject>();
@@ -110,7 +113,7 @@ public class main_ctr : MonoBehaviour
         
         state=0;
         //stage_num=1;
-        enemy_st=false;
+        //enemy_st=false;
         camset=false;
         clear_st=false;
         retry_st=false;
@@ -163,10 +166,19 @@ public class main_ctr : MonoBehaviour
                 //ステージサイズによるカメラの固定位置
                 if(GameObject.Find ("size_s")){
                     stage_size_st=0;
+
                     cam_pos2=new Vector3( 0f, 34f, -5f );
+
+                    //シーンの影の強さ調整
+                    QualitySettings.shadowDistance=40f;
+
                 }else if(GameObject.Find ("size_m")){
                     stage_size_st=1;
+                    
                     cam_pos2=new Vector3( 0f, 60f, -10f );
+
+                    //シーンの影の強さ調整
+                    QualitySettings.shadowDistance=70f;
                 }
                 //ダンゴムシ読み込み
                 for(int i=0; i < DangoCntList[stage_num-1]; i++){
@@ -177,6 +189,16 @@ public class main_ctr : MonoBehaviour
 
                 break;
             case 5:
+                //天敵エントリー
+                if(EnemyEntryList[stage_num-1]==1){    
+                    GameObject EnemyObject = Object.Instantiate(EnemyList[0]) as GameObject;
+                    EnemyObject.transform.Translate(0, 1, 0);
+                }
+                
+                state=6;
+                
+                break;
+            case 6:
                 ui_fade.GetComponent<Animator>().Play("fade_in");
 
                 if(!camset){
@@ -192,11 +214,6 @@ public class main_ctr : MonoBehaviour
                 
                 break;
             case 10:
-                //Debug.Log("カメラストップ！");
-                
-                state=11;
-                break;
-            case 11:
                 //ダンゴムシ読み込み
                 /*for(int i=0; i < dango_cnt; i++){
                     Invoke("dango_born", i*0.1f);
@@ -204,18 +221,8 @@ public class main_ctr : MonoBehaviour
                 
                 Timer.timerActive=true;
 
-                state=15;
-                
-                break;
-            case 15:
-                //天敵読み込み
-                if(enemy_st){
-                //if(GameObject.Find ("size_s")){    
-                    GameObject EnemyObject = Object.Instantiate(EnemyList[0]) as GameObject;
-                    EnemyObject.transform.Translate(0, 1, 0);
-                }
-                
                 state=30;
+                
                 break;
                 
             case 30:    
