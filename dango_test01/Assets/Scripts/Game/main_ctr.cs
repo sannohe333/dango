@@ -317,7 +317,10 @@ public class main_ctr : MonoBehaviour
 
                 break;
             case 60:
-
+                if (SceneController.AlreadyLoadScene("StageSelect"))
+                {
+                    SceneManager.UnloadSceneAsync("StageSelect");
+                }
                 if (SceneController.AlreadyLoadScene("Game"))
                 {
                     SceneManager.UnloadSceneAsync("Game");
