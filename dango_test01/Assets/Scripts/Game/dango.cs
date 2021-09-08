@@ -29,6 +29,9 @@ public class dango : MonoBehaviour
     //落下判定
     private bool fall_st; 
 
+    //捕食エリアに入っている時
+    private bool danger_st;
+
     //リジッドボディ
     public Rigidbody rb;
 　　
@@ -58,6 +61,8 @@ public class dango : MonoBehaviour
 
         fall_st=false;
 
+        danger_st=false;
+
         collision_cnt=0;
 
         //スコアスクリプトアクセス用
@@ -68,6 +73,7 @@ public class dango : MonoBehaviour
 
         //SEスクリプトアクセス用
         sound=GameObject.Find("se_object").gameObject.GetComponent<Sound>();
+
         
 
         //子オブジェクトを検索
@@ -246,6 +252,9 @@ public class dango : MonoBehaviour
             delete_eff.SetActive(true);
 
             sound.audioSource.PlayOneShot(sound.sound4,0.3f);
+            if(danger_st){
+                main_ctr.eat_area_cnt-=1;
+            }
   
         }
    
@@ -262,8 +271,22 @@ public class dango : MonoBehaviour
             dango_dead.SetActive(true);
             Arrow_L.SetActive(false);
             Arrow_R.SetActive(false);
+            //main_ctr.eat_area_cnt-=1;
 
         }
+
+        //捕食エリアに入った時の処理
+        if(other.gameObject.tag=="EatArea"){
+            //Debug.Log("入った");
+            //main_ctr.eat_area_cnt+=1;
+
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        //main_ctr.eat_area_cnt-=1;
+        //Debug.Log("出た");
     }
 
     /// <summary>

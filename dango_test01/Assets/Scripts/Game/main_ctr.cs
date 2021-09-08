@@ -83,6 +83,9 @@ public class main_ctr : MonoBehaviour
     //天敵プレファブリスト
     public List<GameObject> EnemyList = new List<GameObject>();
 
+    //天敵の捕食エリアに居る獲物の数
+    public int eat_area_cnt;
+
     void Awake()
     {
          /** 既にシーンが読み込まれているかどうか */
@@ -119,6 +122,7 @@ public class main_ctr : MonoBehaviour
         retry_st=false;
         stageselect_st=false;
         gameover_st=false;
+        eat_area_cnt=0;
 
         //スコアスクリプトアクセス用
         Score=GameObject.Find("Canvas/ScorePanel").gameObject.GetComponent<Score>();
@@ -175,10 +179,10 @@ public class main_ctr : MonoBehaviour
                 }else if(GameObject.Find ("size_m")){
                     stage_size_st=1;
                     
-                    cam_pos2=new Vector3( 0f, 60f, -10f );
+                    cam_pos2=new Vector3( 0f, 46f, -8f );
 
                     //シーンの影の強さ調整
-                    QualitySettings.shadowDistance=70f;
+                    QualitySettings.shadowDistance=60f;
                 }
                 //ダンゴムシ読み込み
                 for(int i=0; i < DangoCntList[stage_num-1]; i++){
@@ -192,6 +196,7 @@ public class main_ctr : MonoBehaviour
                 //天敵エントリー
                 if(EnemyEntryList[stage_num-1]==1){    
                     GameObject EnemyObject = Object.Instantiate(EnemyList[0]) as GameObject;
+                    EnemyObject.transform.SetParent(Stage.transform, false);
                     EnemyObject.transform.Translate(0, 1, 0);
                 }
                 
@@ -300,6 +305,7 @@ public class main_ctr : MonoBehaviour
                 Score.ScoreReset(stage_num);
                 Timer.seconds = 0f;
                 Timer.timerText.text =Timer.seconds.ToString("F1")+"sec";
+                eat_area_cnt=0;
                 
                 state=52;
 
@@ -367,7 +373,7 @@ public class main_ctr : MonoBehaviour
             }
         }else if(stage_size_st==1){
             
-            copied.transform.Translate(Random.Range(-9,9), 7, Random.Range(-9,9));
+            copied.transform.Translate(Random.Range(-6,6), 7, Random.Range(-6,6));
             int f=Random.Range(0,4);
             if(f==0){
                 copied.transform.Rotate(0, 90, 0);
