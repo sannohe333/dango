@@ -47,6 +47,8 @@ public class dango : MonoBehaviour
     private GameObject dango_goal;
     private GameObject dango_dead;
     private GameObject delete_eff;
+    private GameObject dead_eff;
+
     //private GameObject goal_txt;
 
     private GameObject enemy;
@@ -91,6 +93,9 @@ public class dango : MonoBehaviour
 
         delete_eff=transform.Find("delete_effect").gameObject;
         delete_eff.SetActive(false);
+
+        dead_eff=transform.Find("death_eff").gameObject;
+        dead_eff.SetActive(false);
 
         //enemy=GameObject.Find("enemy").gameObject;
         
@@ -265,10 +270,14 @@ public class dango : MonoBehaviour
     {
         //天敵に食べられた時の処理
         if(other.gameObject.tag=="mouth"){
+            col1.enabled = false;
+            col2.enabled = false;
             move_st=false;
             dango_def.SetActive(false);
             dango_maru.SetActive(false);
-            dango_dead.SetActive(true);
+            //dango_dead.SetActive(true);
+            dead_eff.SetActive(true);
+
             Arrow_L.SetActive(false);
             Arrow_R.SetActive(false);
             //main_ctr.eat_area_cnt-=1;

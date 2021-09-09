@@ -26,9 +26,16 @@ public class StageSelect : MonoBehaviour
             GameManager.Instance.stage_st=1;
         }
 
-        if(GameManager.Instance.clear_stage_st==0){
+        if(GameManager.Instance.debug_mode){
+            if(GameManager.Instance.clear_stage_st==0)
+            GameManager.Instance.clear_stage_st=7;
+        }else{
+
+            if(GameManager.Instance.clear_stage_st==0)
             GameManager.Instance.clear_stage_st=1;
+        
         }
+        
     }
 
  

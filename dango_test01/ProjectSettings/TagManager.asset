@@ -10,6 +10,7 @@ TagManager:
   - enemy
   - mouth
   - dango
+  - EatArea
   layers:
   - Default
   - TransparentFX
