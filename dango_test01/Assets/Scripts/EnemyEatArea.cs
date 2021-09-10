@@ -14,20 +14,14 @@ public class EnemyEatArea : MonoBehaviour
         main_ctr=GameObject.Find("ctr_obj").gameObject.GetComponent<main_ctr>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnTriggerStay(Collider other)
     {
         //ダンゴムシが捕食エリアに入っている場合
         if(other.gameObject.tag=="dango"){
-            main_ctr.eat_area_cnt=1;
+            main_ctr.eat_area_st=true;
             //Debug.Log("入っている");
         }else{
-            main_ctr.eat_area_cnt=0;
+            main_ctr.eat_area_st=false;
             //Debug.Log("いない");
         }
     }

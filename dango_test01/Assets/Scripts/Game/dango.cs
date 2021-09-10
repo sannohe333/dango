@@ -30,7 +30,7 @@ public class dango : MonoBehaviour
     private bool fall_st; 
 
     //捕食エリアに入っている時
-    private bool danger_st;
+    //private bool danger_st;
 
     //リジッドボディ
     public Rigidbody rb;
@@ -47,7 +47,7 @@ public class dango : MonoBehaviour
     private GameObject dango_goal;
     private GameObject dango_dead;
     private GameObject delete_eff;
-    private GameObject dead_eff;
+    //private GameObject dead_eff;
 
     //private GameObject goal_txt;
 
@@ -63,7 +63,7 @@ public class dango : MonoBehaviour
 
         fall_st=false;
 
-        danger_st=false;
+        //danger_st=false;
 
         collision_cnt=0;
 
@@ -94,8 +94,8 @@ public class dango : MonoBehaviour
         delete_eff=transform.Find("delete_effect").gameObject;
         delete_eff.SetActive(false);
 
-        dead_eff=transform.Find("death_eff").gameObject;
-        dead_eff.SetActive(false);
+        //dead_eff=transform.Find("death_eff").gameObject;
+        //dead_eff.SetActive(false);
 
         //enemy=GameObject.Find("enemy").gameObject;
         
@@ -257,9 +257,9 @@ public class dango : MonoBehaviour
             delete_eff.SetActive(true);
 
             sound.audioSource.PlayOneShot(sound.sound4,0.3f);
-            if(danger_st){
+            /*if(danger_st){
                 main_ctr.eat_area_cnt-=1;
-            }
+            }*/
   
         }
    

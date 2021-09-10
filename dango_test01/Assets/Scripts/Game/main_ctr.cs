@@ -83,8 +83,8 @@ public class main_ctr : MonoBehaviour
     //天敵プレファブリスト
     public List<GameObject> EnemyList = new List<GameObject>();
 
-    //天敵の捕食エリアに居る獲物の数
-    public int eat_area_cnt;
+    //天敵の捕食エリアに獲物が居る
+    public bool eat_area_st;
 
     // 捕食エフェクト
     public GameObject eat_effect;
@@ -125,7 +125,7 @@ public class main_ctr : MonoBehaviour
         retry_st=false;
         stageselect_st=false;
         gameover_st=false;
-        eat_area_cnt=0;
+        eat_area_st=false;
 
         //スコアスクリプトアクセス用
         Score=GameObject.Find("Canvas/ScorePanel").gameObject.GetComponent<Score>();
@@ -177,7 +177,7 @@ public class main_ctr : MonoBehaviour
                     cam_pos2=new Vector3( 0f, 34f, -5f );
 
                     //シーンの影の強さ調整
-                    QualitySettings.shadowDistance=40f;
+                    QualitySettings.shadowDistance=54f;
 
                 }else if(GameObject.Find ("size_m")){
                     stage_size_st=1;
@@ -185,7 +185,7 @@ public class main_ctr : MonoBehaviour
                     cam_pos2=new Vector3( 0f, 46f, -8f );
 
                     //シーンの影の強さ調整
-                    QualitySettings.shadowDistance=60f;
+                    QualitySettings.shadowDistance=64f;
                 }
                 //ダンゴムシ読み込み
                 for(int i=0; i < DangoCntList[stage_num-1]; i++){
@@ -308,7 +308,7 @@ public class main_ctr : MonoBehaviour
                 Score.ScoreReset(stage_num);
                 Timer.seconds = 0f;
                 Timer.timerText.text =Timer.seconds.ToString("F1")+"sec";
-                eat_area_cnt=0;
+                eat_area_st=false;
                 
                 state=52;
 
@@ -351,10 +351,14 @@ public class main_ctr : MonoBehaviour
 
         GameObject copied;
 
-        int f1=Random.Range(0,10);
+        int f1=Random.Range(0,5);
 
         if(f1==0){
             copied = Object.Instantiate(DangoTypeList[1]) as GameObject;
+        }else if(f1==1){
+            copied = Object.Instantiate(DangoTypeList[2]) as GameObject;
+        }else if(f1==2){
+            copied = Object.Instantiate(DangoTypeList[3]) as GameObject;
         }else{
             copied = Object.Instantiate(DangoTypeList[0]) as GameObject;
         }
@@ -400,7 +404,8 @@ public class main_ctr : MonoBehaviour
         GameObject enemy;
      
         copied = Object.Instantiate(eat_effect) as GameObject;
-        enemy = GameObject.Find("stage/kaeru(Clone)").gameObject;
+        //enemy = GameObject.Find("stage/kaeru(Clone)").gameObject;
+        enemy = GameObject.FindWithTag("enemy");
         
         copied.transform.SetParent(enemy.transform, false);
         copied.transform.Translate(Random.Range(-1,2), Random.Range(3,3), Random.Range(1,2));

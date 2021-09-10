@@ -6358,7 +6358,7 @@ Transform:
   m_GameObject: {fileID: 798591569}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: -10, z: 2}
-  m_LocalScale: {x: 8, y: 1, z: 8}
+  m_LocalScale: {x: 6, y: 1, z: 6}
   m_Children: []
   m_Father: {fileID: 938731356}
   m_RootOrder: 0
@@ -6969,7 +6969,9 @@ MonoBehaviour:
   prefab: {fileID: 4542503602637027512, guid: 4aaa33906890bdb47a7e4492e1d0dd22, type: 3}
   DangoTypeList:
   - {fileID: 2088632208750706355, guid: 867435f5b0c27bb479ab1c29666b3c2b, type: 3}
-  - {fileID: 2088632208750706355, guid: 867435f5b0c27bb479ab1c29666b3c2b, type: 3}
+  - {fileID: 7602372871042069781, guid: 8d147bc0cda6f5b47a8dd55ac5b8da72, type: 3}
+  - {fileID: 7673746484698768965, guid: eb57cf2985c1be8459002f3cd7853375, type: 3}
+  - {fileID: 9092120231826234606, guid: 627227bfe452ee74e82680b6f4be4261, type: 3}
   ui_fade: {fileID: 226380901}
   pose_menu_obj: {fileID: 0}
   clear_st: 0
@@ -6992,7 +6994,7 @@ MonoBehaviour:
   EnemyEntryList: 000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000
   EnemyList:
   - {fileID: 684724521318650990, guid: 5dfd6757d32cd464abd9ad26be297f92, type: 3}
-  eat_area_cnt: 0
+  eat_area_st: 0
   eat_effect: {fileID: 5712742778381661404, guid: 5db062e90b690654c874c39652815979,
     type: 3}
 --- !u!4 &1191924463

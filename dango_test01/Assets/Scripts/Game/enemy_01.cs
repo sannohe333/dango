@@ -25,10 +25,13 @@ public class enemy_01 : MonoBehaviour
 
     //private GameObject mouth;
 
-    public Animator animator;
+    private Animator animator;
 
     //捕食中
     private bool eat_st;
+
+    // 捕食エフェクト
+    //public GameObject eat_effect;
 
     
 
@@ -67,7 +70,7 @@ public class enemy_01 : MonoBehaviour
 
             transform.position += transform.forward * (speed*2) * Time.deltaTime;
 
-        }else if(main_ctr.eat_area_cnt>0 && !eat_st){
+        }else if(main_ctr.eat_area_st && !eat_st){
                 eat_st=true;
                 move_st=false;
 
@@ -75,6 +78,7 @@ public class enemy_01 : MonoBehaviour
                 //Debug.Log("eat_area_cnt="+main_ctr.eat_area_cnt);
 
         }
+        //Debug.Log("eat="+eat_st);
     }
     IEnumerator FuncCoroutine() {
         while(true){
@@ -130,4 +134,6 @@ public class enemy_01 : MonoBehaviour
     {
         jump_st=false;
     }
+
+    
 }
