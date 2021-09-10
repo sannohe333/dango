@@ -6993,6 +6993,8 @@ MonoBehaviour:
   EnemyList:
   - {fileID: 684724521318650990, guid: 5dfd6757d32cd464abd9ad26be297f92, type: 3}
   eat_area_cnt: 0
+  eat_effect: {fileID: 5712742778381661404, guid: 5db062e90b690654c874c39652815979,
+    type: 3}
 --- !u!4 &1191924463
 Transform:
   m_ObjectHideFlags: 0

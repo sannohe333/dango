@@ -86,6 +86,9 @@ public class main_ctr : MonoBehaviour
     //天敵の捕食エリアに居る獲物の数
     public int eat_area_cnt;
 
+    // 捕食エフェクト
+    public GameObject eat_effect;
+
     void Awake()
     {
          /** 既にシーンが読み込まれているかどうか */
@@ -389,6 +392,18 @@ public class main_ctr : MonoBehaviour
         }
         copied.transform.SetParent(Stage.transform, false);
 
+    }
+
+    public void EatEff()
+    {
+        GameObject copied;
+        GameObject enemy;
+     
+        copied = Object.Instantiate(eat_effect) as GameObject;
+        enemy = GameObject.Find("stage/kaeru(Clone)").gameObject;
+        
+        copied.transform.SetParent(enemy.transform, false);
+        copied.transform.Translate(Random.Range(-1,2), Random.Range(3,3), Random.Range(1,2));
     }
 
     

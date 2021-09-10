@@ -270,17 +270,20 @@ public class dango : MonoBehaviour
     {
         //天敵に食べられた時の処理
         if(other.gameObject.tag=="mouth"){
-            col1.enabled = false;
+            /*col1.enabled = false;
             col2.enabled = false;
             move_st=false;
             dango_def.SetActive(false);
             dango_maru.SetActive(false);
-            //dango_dead.SetActive(true);
             dead_eff.SetActive(true);
 
             Arrow_L.SetActive(false);
-            Arrow_R.SetActive(false);
-            //main_ctr.eat_area_cnt-=1;
+            Arrow_R.SetActive(false);*/
+
+            main_ctr.EatEff();
+            Score.deleteCnt();
+            Destroy(gameObject);
+            
 
         }
 

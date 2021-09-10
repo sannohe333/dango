@@ -26,6 +26,7 @@ public class StageSelect : MonoBehaviour
             GameManager.Instance.stage_st=1;
         }
 
+        //debugモード
         if(GameManager.Instance.debug_mode){
             if(GameManager.Instance.clear_stage_st==0)
             GameManager.Instance.clear_stage_st=7;
@@ -42,27 +43,6 @@ public class StageSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            /** 既にシーンが読み込まれているかどうか */
-           
-            /*if (SceneController.AlreadyLoadScene("StageSelect"))
-            {
-                SceneManager.UnloadSceneAsync("StageSelect");
-            }
-            
-            SceneManager.LoadScene("Game", LoadSceneMode.Additive);*/
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit = new RaycastHit();
-        
-                if (Physics.Raycast(ray, out hit)){
-                    //Rayがcolにヒットした場合
-                    //if (hit.collider == col){
-                        Debug.Log("hit!");
-                    //}
-                    
-                }
-        }
+       
     }
 }
