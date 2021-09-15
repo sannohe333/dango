@@ -21,6 +21,9 @@ ModelImporter:
   - first:
       74: -2054729920978899392
     second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Walk"
+  - first:
+      74: 3845220359227220678
+    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Attack_2"
   externalObjects:
   - first:
       type: UnityEngine:Material
