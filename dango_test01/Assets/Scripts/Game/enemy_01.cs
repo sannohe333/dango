@@ -74,7 +74,12 @@ public class enemy_01 : MonoBehaviour
                 eat_st=true;
                 move_st=false;
 
-                animator.Play("Attack");
+                int i=Random.Range(0,5);
+                if(i==0){
+                    animator.Play("Attack");
+                }else{
+                    animator.Play("Attack_2");
+                }
                 //Debug.Log("eat_area_cnt="+main_ctr.eat_area_cnt);
 
         }
@@ -104,13 +109,13 @@ public class enemy_01 : MonoBehaviour
             }*/
 
             if(!eat_st && !jump_st){
-                int f=Random.Range(0,3);
-                if(f==0){
+                int i=Random.Range(0,3);
+                if(i==0){
                     move_st=true;
                     rot_speed=-rot_speed;
                     animator.Play("Walk");
 
-                }else if(f==1){
+                }else if(i==1){
                     move_st=false;
                     animator.Play("Wait");
                 }else{

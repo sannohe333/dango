@@ -11,6 +11,7 @@ public class main_ctr : MonoBehaviour
     //外部スクリプトアクセス用
     private Score  Score;
     private timer  Timer;
+    private Guide  Guide;
 
     //カメラ位置調整用
     private GameObject cam_obj;
@@ -27,7 +28,8 @@ public class main_ctr : MonoBehaviour
     //ポーズメニュー
     public GameObject pose_menu_obj;
 
-    //public int dango_cnt;
+    //ガイド表示中はtrue
+    public bool guide_st;
 
     //クリアーフラグ
     [HideInInspector]
@@ -126,12 +128,16 @@ public class main_ctr : MonoBehaviour
         stageselect_st=false;
         gameover_st=false;
         eat_area_st=false;
+        guide_st=false;
 
         //スコアスクリプトアクセス用
         Score=GameObject.Find("Canvas/ScorePanel").gameObject.GetComponent<Score>();
 
         //タイマースクリプトアクセス用
         Timer=GameObject.Find("Canvas/timer").gameObject.GetComponent<timer>();
+
+        //ガイドスクリプトアクセス用
+        Guide=GameObject.Find("Canvas/guide_panel").gameObject.GetComponent<Guide>();
 
         //cameraオブジェクトを検索
         cam_obj=GameObject.Find("camera_pos").gameObject;
@@ -200,7 +206,7 @@ public class main_ctr : MonoBehaviour
                 if(EnemyEntryList[stage_num-1]==1){    
                     GameObject EnemyObject = Object.Instantiate(EnemyList[0]) as GameObject;
                     EnemyObject.transform.SetParent(Stage.transform, false);
-                    EnemyObject.transform.Translate(0, 1, 0);
+                    EnemyObject.transform.Translate(0, 1, -4);
                 }
                 
                 state=6;
@@ -222,19 +228,40 @@ public class main_ctr : MonoBehaviour
                 
                 break;
             case 10:
-                //ダンゴムシ読み込み
-                /*for(int i=0; i < dango_cnt; i++){
-                    Invoke("dango_born", i*0.1f);
-                }*/
+                //ガイド表示
+                if(Guide.StageGuideList[stage_num-1]==1){
+                    guide_st=true;
+                    if(stage_num==1){
+                        Guide.GuidePlay(0);
+                    }else if(stage_num==2){
+                        Guide.GuidePlay(1);
+                    }else if(stage_num==4){
+                        Guide.GuidePlay(2);
+                    }else if(stage_num==7){
+                        Guide.GuidePlay(3);
+                    }
+                    
+                }
+
+                state=11;
                 
+                break;
+            case 11:
+                //ガイド表示中
+                if(!guide_st){
+                    state=12;
+                }
+                break;
+            case 12:
+                //タイムカウントスタート
                 Timer.timerActive=true;
 
                 state=30;
                 
                 break;
-                
             case 30:    
-                        
+                //ゲームプレイ中
+
                 if(clear_st){
                     //Time.timeScale = 10f;
                     ui_fade.GetComponent<Animator>().Play("fade_out");
@@ -272,7 +299,7 @@ public class main_ctr : MonoBehaviour
 
                 break;
             case 50:
-
+                //リザルト
                 if(Input.GetMouseButtonDown(0))
                 {
                    //リセット
@@ -309,6 +336,7 @@ public class main_ctr : MonoBehaviour
                 Timer.seconds = 0f;
                 Timer.timerText.text =Timer.seconds.ToString("F1")+"sec";
                 eat_area_st=false;
+                guide_st=false;
                 
                 state=52;
 
