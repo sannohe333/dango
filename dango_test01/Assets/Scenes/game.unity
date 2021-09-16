@@ -823,6 +823,7 @@ MonoBehaviour:
   sound2: {fileID: 8300000, guid: cc21679d18e1ee644bc89cec075b2ca6, type: 3}
   sound3: {fileID: 8300000, guid: 1ef6c8f3225aa144f9683ac02d222082, type: 3}
   sound4: {fileID: 8300000, guid: d4ea23531dae58949825aeb7ce3ab735, type: 3}
+  sound5: {fileID: 8300000, guid: 0ba52f98f969ceb4e82fbb20a9988869, type: 3}
   audioSource: {fileID: 0}
 --- !u!82 &299431507
 AudioSource:
@@ -8023,6 +8024,8 @@ MonoBehaviour:
   - {fileID: 2158369856856048449, guid: b563ac106a3984c468f1b1968d53a7d9, type: 3}
   eat_area_st: 0
   eat_effect: {fileID: 5712742778381661404, guid: 5db062e90b690654c874c39652815979,
+    type: 3}
+  rare_effect: {fileID: 5712742778381661404, guid: 5ef9addfe15445d42a94bb9b369e70e9,
     type: 3}
 --- !u!4 &1191924463
 Transform:

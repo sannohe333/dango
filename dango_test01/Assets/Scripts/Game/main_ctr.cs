@@ -91,6 +91,9 @@ public class main_ctr : MonoBehaviour
     // 捕食エフェクト
     public GameObject eat_effect;
 
+    // レアゲットエフェクト
+    public GameObject rare_effect;
+
     void Awake()
     {
          /** 既にシーンが読み込まれているかどうか */
@@ -383,10 +386,13 @@ public class main_ctr : MonoBehaviour
 
         if(f1==0){
             copied = Object.Instantiate(DangoTypeList[1]) as GameObject;
+            copied.GetComponent<dango>().rare_state=true;
         }else if(f1==1){
             copied = Object.Instantiate(DangoTypeList[2]) as GameObject;
+            copied.GetComponent<dango>().rare_state=true;
         }else if(f1==2){
             copied = Object.Instantiate(DangoTypeList[3]) as GameObject;
+            copied.GetComponent<dango>().rare_state=true;
         }else{
             copied = Object.Instantiate(DangoTypeList[0]) as GameObject;
         }
@@ -436,7 +442,19 @@ public class main_ctr : MonoBehaviour
         enemy = GameObject.FindWithTag("enemy");
         
         copied.transform.SetParent(enemy.transform, false);
-        copied.transform.Translate(Random.Range(-1,2), Random.Range(3,3), Random.Range(1,2));
+        copied.transform.Translate(Random.Range(-1f,2f), Random.Range(2f,3f), Random.Range(1f,3f));
+    }
+
+    public void RareGet()
+    {
+        GameObject copied;
+        GameObject goal;
+     
+        copied = Object.Instantiate(rare_effect) as GameObject;
+        goal = GameObject.FindWithTag("Goal");
+        
+        copied.transform.SetParent(goal.transform, false);
+        copied.transform.Translate(Random.Range(-0.5f,1.5f), 6f, Random.Range(0.5f,-1f));
     }
 
     

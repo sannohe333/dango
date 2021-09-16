@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Sound : MonoBehaviour
 {
+    //ダンゴムシクリック
     public AudioClip sound1;
+    //ダンゴムシはじく
     public AudioClip sound2;
+    //落下
     public AudioClip sound3;
+    //ゴール
     public AudioClip sound4;
+    //カエル捕食
+    public AudioClip sound5;
 
     public AudioSource audioSource;
 

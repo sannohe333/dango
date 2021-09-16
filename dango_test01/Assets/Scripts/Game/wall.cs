@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class wall : MonoBehaviour
 {
+    //外部スクリプトアクセス用
+    private main_ctr  main_ctr;
+
     private BoxCollider col;
     private GameObject wall_def;
     private GameObject wall_pos;
@@ -23,6 +26,10 @@ public class wall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        //メインスクリプトアクセス用
+        main_ctr=GameObject.Find("ctr_obj").gameObject.GetComponent<main_ctr>();
+
         //hit_cnt=0;
         up_state=false;
         col_state=false;
@@ -40,51 +47,53 @@ public class wall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //持ち上げている間はマウスの位置に追従
-        if(up_state){
-            this.screenPoint = Camera.main.WorldToScreenPoint(transform.position);
-            Vector3 a = new Vector3 (Input.mousePosition.x,Input.mousePosition.y,screenPoint.z);
-            //Vector3 a = new Vector3 (0,0,0);
-         
-
-            float ax=Camera.main.ScreenToWorldPoint (a).x;
-            float ay=this.transform.position.y;
-            float az=Camera.main.ScreenToWorldPoint (a).z;
-            //transform.position = Camera.main.ScreenToWorldPoint (a);
+        if(!main_ctr.guide_st){
+            //持ち上げている間はマウスの位置に追従
+            if(up_state){
+                this.screenPoint = Camera.main.WorldToScreenPoint(transform.position);
+                Vector3 a = new Vector3 (Input.mousePosition.x,Input.mousePosition.y,screenPoint.z);
+                //Vector3 a = new Vector3 (0,0,0);
             
-            
-            transform.position =  new Vector3 (ax,ay,az);
 
-            
-            if (Input.GetMouseButtonDown(0) && !col_state) {
-                transform.position =  new Vector3 (transform.position.x,this.transform.position.y,transform.position.z);
-                wall_def.transform.localPosition =new Vector3(0, 1, 0);
-                defColor = material.color;
-                material.color=new Color(defColor.r,defColor.g,defColor.b,1f);
-                up_state=false;
-
-                //but_down=true;
-                //Debug.Log("置いた1:"+but_down+" up_state:"+up_state);
+                float ax=Camera.main.ScreenToWorldPoint (a).x;
+                float ay=this.transform.position.y;
+                float az=Camera.main.ScreenToWorldPoint (a).z;
+                //transform.position = Camera.main.ScreenToWorldPoint (a);
                 
-            }
+                
+                transform.position =  new Vector3 (ax,ay,az);
 
-            
-        }else{
-            if (Input.GetMouseButtonDown(0)) {
-    
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit = new RaycastHit();
+                
+                if (Input.GetMouseButtonDown(0) && !col_state) {
+                    transform.position =  new Vector3 (transform.position.x,this.transform.position.y,transform.position.z);
+                    wall_def.transform.localPosition =new Vector3(0, 1, 0);
+                    defColor = material.color;
+                    material.color=new Color(defColor.r,defColor.g,defColor.b,1f);
+                    up_state=false;
+
+                    //but_down=true;
+                    //Debug.Log("置いた1:"+but_down+" up_state:"+up_state);
+                    
+                }
+
+                
+            }else{
+                if (Input.GetMouseButtonDown(0)) {
         
-                if (Physics.Raycast(ray, out hit)){
-                    //Rayがcolにヒットした場合
-                    if (hit.collider == col){
-                        wall_def.transform.localPosition =new Vector3(0, 10, 0);
-                    
-                        material.color=new Color(defColor.r,defColor.g,defColor.b,0.8f);
-                        up_state=true;
-                        //Debug.Log("hit!");
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit = new RaycastHit();
+            
+                    if (Physics.Raycast(ray, out hit)){
+                        //Rayがcolにヒットした場合
+                        if (hit.collider == col){
+                            wall_def.transform.localPosition =new Vector3(0, 10, 0);
+                        
+                            material.color=new Color(defColor.r,defColor.g,defColor.b,0.8f);
+                            up_state=true;
+                            //Debug.Log("hit!");
+                        }
+                        
                     }
-                    
                 }
             }
         }

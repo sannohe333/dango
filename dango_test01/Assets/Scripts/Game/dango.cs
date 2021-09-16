@@ -29,6 +29,12 @@ public class dango : MonoBehaviour
     //落下判定
     private bool fall_st; 
 
+    //食べられた
+    private bool eat_destroy;
+
+    //レア
+    public bool rare_state;
+
     //捕食エリアに入っている時
     //private bool danger_st;
 
@@ -63,7 +69,7 @@ public class dango : MonoBehaviour
 
         fall_st=false;
 
-        //danger_st=false;
+        eat_destroy=false;
 
         collision_cnt=0;
 
@@ -169,14 +175,10 @@ public class dango : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
-
         //クリアー時やゲームオーバー時に残ったダンゴムシは削除
         if(main_ctr.clear_st || main_ctr.gameover_st){
             Destroy(gameObject);
         }
-
-        
 
         //回転補正
         //回転座標をy軸の回転のみに限定
@@ -184,20 +186,16 @@ public class dango : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3( 0f, transform.eulerAngles.y, 0f ));
         }
 
-        //タッチイベント(コンポーネントでやってるので未使用)
-        /*if (Input.GetMouseButtonDown(0)) {
-    
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit = new RaycastHit();
-    
-            if (Physics.Raycast(ray, out hit)){
-                GameObject obj = hit.collider.gameObject;
-
-                dango_def.SetActive(false);
-                dango_maru.SetActive(true);
-                //Debug.Log(obj.name);
+        //食べられた時
+        if(eat_destroy){
+            transform.position += (enemy.transform.position-transform.position)/30;
+            if(Vector3.Distance(transform.position, enemy.transform.position)<2 || transform.position.y<=-1){
+                main_ctr.EatEff();
+                Destroy(gameObject);
             }
-        }*/
+            //Debug.Log("Distance="+Vector3.Distance(transform.position, enemy.transform.position));
+        }
+        
     }
 
     //コライダーイベント
@@ -256,6 +254,10 @@ public class dango : MonoBehaviour
             Arrow_R.SetActive(false);
             delete_eff.SetActive(true);
 
+            if(rare_state){
+                main_ctr.RareGet();
+            }
+            
             sound.audioSource.PlayOneShot(sound.sound4,0.3f);
             /*if(danger_st){
                 main_ctr.eat_area_cnt-=1;
@@ -270,29 +272,23 @@ public class dango : MonoBehaviour
     {
         //天敵に食べられた時の処理
         if(other.gameObject.tag=="mouth"){
-            /*col1.enabled = false;
-            col2.enabled = false;
-            move_st=false;
-            dango_def.SetActive(false);
-            dango_maru.SetActive(false);
-            dead_eff.SetActive(true);
 
-            Arrow_L.SetActive(false);
-            Arrow_R.SetActive(false);*/
-
-            main_ctr.EatEff();
+            //main_ctr.EatEff();
             Score.deleteCnt();
-            Destroy(gameObject);
-            
+            //Destroy(gameObject);
+            col1.enabled = false;
+            col2.enabled = false;
+            rb.useGravity = false;
+            enemy = GameObject.FindWithTag("enemy");
+            eat_destroy=true;
+            //Debug.Log("enemy="+enemy);
 
         }
 
         //捕食エリアに入った時の処理
-        if(other.gameObject.tag=="EatArea"){
-            //Debug.Log("入った");
-            //main_ctr.eat_area_cnt+=1;
-
-        }
+        /*if(other.gameObject.tag=="EatArea"){
+            Debug.Log("入った");
+        }*/
     }
 
     void OnTriggerExit(Collider other)
@@ -323,62 +319,43 @@ public class dango : MonoBehaviour
 	}
 
     public void onClickAct() {
-        if(!move_st){
-            //カメラとの中間座標
-            var distance = Vector3.Distance(transform.position, Camera.main.transform.position);
-            //クリックした座標(2D)
-            var mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
-            //3D空間でクリックした位置
-            Vector3 currentPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            //天敵の方を向く
-            //transform.LookAt(enemy.transform.position);
-            
-/* 20210823 加藤コメントアウト（古いバージョン）
-            if(transform.position.x>currentPosition.x && transform.position.z>currentPosition.z){
-                    rb.AddForce(new Vector3(10f, 0f, 10f)*2f, ForceMode.Impulse);
-            }else if(transform.position.x>currentPosition.x && transform.position.z<currentPosition.z){
-                    rb.AddForce(new Vector3(10f, 0f, -10f)*2f, ForceMode.Impulse);
-            }else if(transform.position.x<currentPosition.x && transform.position.z>currentPosition.z){
-                    rb.AddForce(new Vector3(-10f, 0f, 10f)*2f, ForceMode.Impulse);
-            }else if(transform.position.x<currentPosition.x && transform.position.z<currentPosition.z){
-                    rb.AddForce(new Vector3(-10f, 0f, -10f)*2f, ForceMode.Impulse);
-            }else if(transform.position.x==currentPosition.x && transform.position.z>currentPosition.z){
-                    rb.AddForce(new Vector3(0f, 0f, 10f)*2f, ForceMode.Impulse);
-            }else if(transform.position.x>currentPosition.x && transform.position.z==currentPosition.z){
-                    rb.AddForce(new Vector3(10f, 0f, 0f)*2f, ForceMode.Impulse);
-            }else if(transform.position.x==currentPosition.x && transform.position.z<currentPosition.z){
-                    rb.AddForce(new Vector3(0f, 0f, -10f)*2f, ForceMode.Impulse);
-            }else if(transform.position.x<currentPosition.x && transform.position.z==currentPosition.z){
-                    rb.AddForce(new Vector3(-10f, 0f, 0f)*2f, ForceMode.Impulse);
+        if(!main_ctr.guide_st){
+            if(!move_st){
+                //カメラとの中間座標
+                var distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+                //クリックした座標(2D)
+                var mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
+                //3D空間でクリックした位置
+                Vector3 currentPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                //天敵の方を向く
+                //transform.LookAt(enemy.transform.position);
+
+                // タップ位置とダンゴ虫の反対方向に移動する(加藤さん作成)
+                rb.AddForce(this.GetJumpDirection(currentPosition, 3500));
+
+                
+                sound.audioSource.PlayOneShot(sound.sound2,0.05f);
+
+            }else{
+                //クリックするとダンゴムシが丸まって移動停止
+                move_st=false;
+
+                sound.audioSource.PlayOneShot(sound.sound1,0.1f);
+
+                dango_def.SetActive(false);
+                dango_maru.SetActive(true);
+                Arrow_L.SetActive(false);
+                Arrow_R.SetActive(false);
+
+                //回転の制限を解除（Constraints制御）
+                rb.constraints = RigidbodyConstraints.None ;
+
+                //球形コライダをON
+                col1.enabled = false;
+                col2.enabled = true;
+
+                Invoke("restart", 2);//2秒後にリスタートメソッド実行
             }
-*/
-/*20210823 加藤*/
-
-            // タップ位置とダンゴ虫の反対方向に移動する(加藤さん作成)
-            rb.AddForce(this.GetJumpDirection(currentPosition, 3500));
-
-            
-            sound.audioSource.PlayOneShot(sound.sound2,0.05f);
-
-        }else{
-            //クリックするとダンゴムシが丸まって移動停止
-            move_st=false;
-
-            sound.audioSource.PlayOneShot(sound.sound1,0.1f);
-
-            dango_def.SetActive(false);
-            dango_maru.SetActive(true);
-            Arrow_L.SetActive(false);
-            Arrow_R.SetActive(false);
-
-            //回転の制限を解除（Constraints制御）
-            rb.constraints = RigidbodyConstraints.None ;
-
-            //球形コライダをON
-            col1.enabled = false;
-            col2.enabled = true;
-
-            Invoke("restart", 2);//2秒後にリスタートメソッド実行
         }
 
         //Debug.Log("タッチ");

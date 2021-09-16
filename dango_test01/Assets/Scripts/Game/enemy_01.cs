@@ -8,6 +8,8 @@ public class enemy_01 : MonoBehaviour
     //外部スクリプトアクセス用
     private main_ctr  main_ctr;
 
+    private Sound  sound;
+
     //コルーチンの待ち時間（Inspectorで指定）
     public float timeOut;
 
@@ -47,6 +49,9 @@ public class enemy_01 : MonoBehaviour
         //メインスクリプトアクセス用
         main_ctr = GameObject.Find("ctr_obj").gameObject.GetComponent<main_ctr>();
 
+        //SEスクリプトアクセス用
+        sound=GameObject.Find("se_object").gameObject.GetComponent<Sound>();
+
         //一定時間毎に処理
         StartCoroutine( FuncCoroutine() );
     }
@@ -80,33 +85,17 @@ public class enemy_01 : MonoBehaviour
                 }else{
                     animator.Play("Attack_2");
                 }
+
+                sound.audioSource.PlayOneShot(sound.sound5,0.2f);
                 //Debug.Log("eat_area_cnt="+main_ctr.eat_area_cnt);
 
         }
         //Debug.Log("eat="+eat_st);
     }
+
     IEnumerator FuncCoroutine() {
         while(true){
-            // Do anything
             
-            /*if(main_ctr.eat_area_cnt>0){
-                move_st=false;
-
-                animator.Play("Attack");
-                Debug.Log("eat_area_cnt="+main_ctr.eat_area_cnt);
-
-            }else{
-                int f=Random.Range(0,2);
-                if(f==0){
-                    move_st=true;
-                    rot_speed=-rot_speed;
-                    animator.Play("Walk");
-
-                }else{
-                    move_st=false;
-                    animator.Play("Wait");
-                }
-            }*/
 
             if(!eat_st && !jump_st){
                 int i=Random.Range(0,3);
