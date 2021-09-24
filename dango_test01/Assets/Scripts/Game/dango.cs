@@ -139,6 +139,7 @@ public class dango : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("速度="+rb.velocity);
         /*if(!start_st){
             transform.position += transform.forward * 0.2f * Time.deltaTime;
         }*/
@@ -240,18 +241,31 @@ public class dango : MonoBehaviour
 
             //ぶつかったカウント（ハマり回避用）
             collision_cnt++;
+
+            //衝突の強さを取得
+            /*if(collision.gameObject.tag=="enemy"){
+                float collisionForce = collision.impulse.magnitude / Time.fixedDeltaTime;
+                if(collisionForce>=1000){
+                    Debug.Log("衝突の強さ"+collisionForce);
+                } 
+            }*/
+            
         
         }
 
         //ゴールに着いた時の処理
         if(collision.gameObject.tag=="Goal"){
             //goal_txt.SetActive(true);
+            
             move_st=false;
             dango_def.SetActive(false);
             dango_maru.SetActive(false);
             dango_goal.SetActive(true);
             Arrow_L.SetActive(false);
             Arrow_R.SetActive(false);
+            col1.enabled = false;
+            col2.enabled = false;
+            rb.useGravity = false;
             delete_eff.SetActive(true);
 
             if(rare_state){
@@ -331,10 +345,12 @@ public class dango : MonoBehaviour
                 //transform.LookAt(enemy.transform.position);
 
                 // タップ位置とダンゴ虫の反対方向に移動する(加藤さん作成)
-                rb.AddForce(this.GetJumpDirection(currentPosition, 3500));
+                rb.AddForce(this.GetJumpDirection(currentPosition, 5500));
 
                 
                 sound.audioSource.PlayOneShot(sound.sound2,0.05f);
+
+                
 
             }else{
                 //クリックするとダンゴムシが丸まって移動停止

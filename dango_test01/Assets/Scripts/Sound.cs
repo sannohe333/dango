@@ -14,6 +14,10 @@ public class Sound : MonoBehaviour
     public AudioClip sound4;
     //カエル捕食
     public AudioClip sound5;
+    //カエルダメージ
+    public AudioClip sound6;
+    //カエル鳴き声
+    public AudioClip sound7;
 
     public AudioSource audioSource;
 

@@ -39,7 +39,7 @@ public class Guide : MonoBehaviour
         guide_panel=GameObject.Find("Canvas/guide_panel").gameObject;
         guide_anime=guide_panel.GetComponent<Animator>();
 
-        Debug.Log("pages.Count="+pages.Count+ ": page_num="+page_num);
+        //Debug.Log("pages.Count="+pages.Count+ ": page_num="+page_num);
 
     }
 

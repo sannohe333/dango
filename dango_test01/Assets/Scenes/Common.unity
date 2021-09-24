@@ -170,4 +170,4 @@ MonoBehaviour:
   stage_st: 0
   clear_stage_st: 1
   first_open: 0
-  debug_mode: 0
+  debug_mode: 1

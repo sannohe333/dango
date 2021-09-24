@@ -28,8 +28,16 @@ public class main_ctr : MonoBehaviour
     //ポーズメニュー
     public GameObject pose_menu_obj;
 
+    //デンジャーパネル
+    public GameObject danger_panel;
+
     //ガイド表示中はtrue
+    [HideInInspector]
     public bool guide_st;
+
+    //ゲームプレイ中はtrue
+    [HideInInspector]
+    public bool play_st;
 
     //クリアーフラグ
     [HideInInspector]
@@ -132,6 +140,7 @@ public class main_ctr : MonoBehaviour
         gameover_st=false;
         eat_area_st=false;
         guide_st=false;
+        play_st=false;
 
         //スコアスクリプトアクセス用
         Score=GameObject.Find("Canvas/ScorePanel").gameObject.GetComponent<Score>();
@@ -210,8 +219,9 @@ public class main_ctr : MonoBehaviour
                     GameObject EnemyObject = Object.Instantiate(EnemyList[0]) as GameObject;
                     EnemyObject.transform.SetParent(Stage.transform, false);
                     EnemyObject.transform.Translate(0, 1, -4);
-                }
                 
+                    danger_panel.SetActive(true);
+                }
                 state=6;
                 
                 break;
@@ -228,6 +238,8 @@ public class main_ctr : MonoBehaviour
                         state=10;
                     }
                 }
+
+                
                 
                 break;
             case 10:
@@ -242,9 +254,12 @@ public class main_ctr : MonoBehaviour
                         Guide.GuidePlay(2);
                     }else if(stage_num==7){
                         Guide.GuidePlay(3);
+                    }else if(stage_num==8){
+                        Guide.GuidePlay(4);
                     }
                     
                 }
+                
 
                 state=11;
                 
@@ -259,6 +274,13 @@ public class main_ctr : MonoBehaviour
                 //タイムカウントスタート
                 Timer.timerActive=true;
 
+                /*if(EnemyEntryList[stage_num-1]==1){
+                    danger_panel.SetActive(true);
+                }*/
+                play_st=true;
+                /*if(EnemyEntryList[stage_num-1]==1){   
+                    GameObject.FindWithTag("enemy").GetComponent<enemy_01>().StartCoroutine( FuncCoroutine() );
+                }*/
                 state=30;
                 
                 break;
@@ -340,6 +362,7 @@ public class main_ctr : MonoBehaviour
                 Timer.timerText.text =Timer.seconds.ToString("F1")+"sec";
                 eat_area_st=false;
                 guide_st=false;
+                play_st=false;
                 
                 state=52;
 

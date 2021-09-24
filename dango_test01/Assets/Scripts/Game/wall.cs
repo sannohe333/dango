@@ -47,7 +47,7 @@ public class wall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!main_ctr.guide_st){
+        if(!main_ctr.guide_st && main_ctr.play_st){
             //持ち上げている間はマウスの位置に追従
             if(up_state){
                 this.screenPoint = Camera.main.WorldToScreenPoint(transform.position);

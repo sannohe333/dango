@@ -10,5 +10,11 @@ public class self_destroy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void  UnActive_self()
+    {
+        this.gameObject.SetActive(false);
+
+    }
+
 }
 
