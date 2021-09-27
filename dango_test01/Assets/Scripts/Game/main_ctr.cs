@@ -218,7 +218,7 @@ public class main_ctr : MonoBehaviour
                 if(EnemyEntryList[stage_num-1]==1){    
                     GameObject EnemyObject = Object.Instantiate(EnemyList[0]) as GameObject;
                     EnemyObject.transform.SetParent(Stage.transform, false);
-                    EnemyObject.transform.Translate(0, 1, -4);
+                    EnemyObject.transform.Translate(0, 1, -5);
                 
                     danger_panel.SetActive(true);
                 }
