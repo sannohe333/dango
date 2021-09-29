@@ -405,7 +405,7 @@ public class main_ctr : MonoBehaviour
 
         GameObject copied;
 
-        int f1=Random.Range(0,5);
+        int f1=Random.Range(0,6);
 
         if(f1==0){
             copied = Object.Instantiate(DangoTypeList[1]) as GameObject;
@@ -415,6 +415,9 @@ public class main_ctr : MonoBehaviour
             copied.GetComponent<dango>().rare_state=true;
         }else if(f1==2){
             copied = Object.Instantiate(DangoTypeList[3]) as GameObject;
+            copied.GetComponent<dango>().rare_state=true;
+        }else if(f1==3){
+            copied = Object.Instantiate(DangoTypeList[4]) as GameObject;
             copied.GetComponent<dango>().rare_state=true;
         }else{
             copied = Object.Instantiate(DangoTypeList[0]) as GameObject;

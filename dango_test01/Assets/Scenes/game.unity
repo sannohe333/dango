@@ -8358,6 +8358,7 @@ MonoBehaviour:
   - {fileID: 7602372871042069781, guid: 8d147bc0cda6f5b47a8dd55ac5b8da72, type: 3}
   - {fileID: 7673746484698768965, guid: eb57cf2985c1be8459002f3cd7853375, type: 3}
   - {fileID: 9092120231826234606, guid: 627227bfe452ee74e82680b6f4be4261, type: 3}
+  - {fileID: 5281158087445783636, guid: 6cfaa6d11091ccf4199871c728d37b1b, type: 3}
   ui_fade: {fileID: 226380901}
   pose_menu_obj: {fileID: 0}
   danger_panel: {fileID: 1261586923}
