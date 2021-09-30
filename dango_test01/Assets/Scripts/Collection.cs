@@ -48,10 +48,20 @@ public class Collection : MonoBehaviour
 			// TODO：まだ取得してないダンゴムシの場合の処理
 
 			// アイコン画像設定
-			icons[i].SetData(this.dangoInfo.dangoList[i].SIconPath);
+			icons[i].SetData(this.dangoInfo.dangoList[i],(DangoInfo.Dango dango)=>{
+				this.ShowDetailDialog(dango);
+			});
 		}
 	}
 
+	/// <summary>
+	/// ダンゴ詳細ダイアログ表示（アイコンクリック時のコールバック処理）
+	/// </summary>
+	/// <param name="dango"></param>
+	private void ShowDetailDialog(DangoInfo.Dango dango){
+		Debug.Log("ダイアログ表示"+dango.id);
+
+	}
 
 	// Update is called once per frame
 	void Update()

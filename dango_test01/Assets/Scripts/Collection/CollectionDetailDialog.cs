@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 /// <summary>
 /// コレクションシーンで表示される、詳細ダイアログ
@@ -11,19 +13,19 @@ public class CollectionDetailDialog : MonoBehaviour
 	/// コレクションアイテム名テキスト
 	/// </summary>
 	[SerializeField]
-	private string itemName = "";
+	private Text itemName;
 
 	/// <summary>
 	/// アイテム画像
 	/// </summary>
 	[SerializeField]
-	private Sprite itemImg;
+	private Image itemImg;
 
 	/// <summary>
 	/// アイテム情報テキスト
 	/// </summary>
 	[SerializeField]
-	private string infoText = "";
+	private Text infoText;
 
 	/// <summary>
 	/// ランク
@@ -35,11 +37,29 @@ public class CollectionDetailDialog : MonoBehaviour
 	/// </summary>
 	public void SetData(string nameText,string infoText,string imgPath){
 		//アイテム名テキスト
-		this.itemName = nameText;
+		this.itemName.text = nameText;
 		//情報テキスト
-		this.infoText = infoText;
+		this.infoText.text = infoText;
 		// 画像設定（例："Images/enemy/enemy000"）
-		this.itemImg = Resources.Load<Sprite>(imgPath);
+		this.itemImg.sprite = Resources.Load<Sprite>(imgPath);
+
+		// ダイアログを表示
+		this.ActiveDialog();
 	}
 
+	/// <summary>
+	/// ダイアログの開閉
+	/// </summary>
+	public void ActiveDialog()
+	{
+		// ダイアログが開いてたら閉じる
+		if(this.gameObject.activeSelf){
+			this.gameObject.SetActive(false);
+		}
+		// ダイアログがとじてたら開く
+		else
+		{
+			this.gameObject.SetActive(true);
+		}
+	}
 }
