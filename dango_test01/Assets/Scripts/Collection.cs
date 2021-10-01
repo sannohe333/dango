@@ -49,6 +49,10 @@ public class Collection : MonoBehaviour
 
 			// アイコン画像設定
 			icons[i].SetData(this.dangoInfo.dangoList[i],(DangoInfo.Dango dango)=>{
+
+				//見取得の場合アイコンにマスク
+
+				//　ダンゴ詳細ダイアログ設定
 				this.ShowDetailDialog(dango);
 			});
 		}

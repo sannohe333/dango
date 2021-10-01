@@ -70,6 +70,7 @@ public class CollectionDetailDialog : MonoBehaviour
 		this.SetRankIcon(this.rank);
 		// ダイアログを表示
 		this.ToggleActive();
+		
 	}
 
 	/// <summary>
@@ -81,7 +82,6 @@ public class CollectionDetailDialog : MonoBehaviour
 		for (int i = 0; this.rankIcons.Length > i; ++i)
 		{
 			bool isActive = rankValue > i;
-			Debug.Log(i);
 			this.rankIcons[i].SetActive(isActive);
 		}
 	}

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : SingletonMonoBehaviour<GameManager> {
 
@@ -17,12 +18,17 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 
     public bool debug_mode;
 
-    void Start()
+    /// <summary>
+    /// test用で初期値入れてる
+    /// </summary>
+	public List<int> collectDangoIdList = new List<int>{0,2};
+
+	void Start()
     {
         stage_st=0;
         clear_stage_st=0;
         first_open=false;
-    }
+	}
 
     void Update()
     {

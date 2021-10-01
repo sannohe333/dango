@@ -5,43 +5,31 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
-public class CollectionListIcon : MonoBehaviour,IPointerClickHandler
+public class CollectionListIcon : MonoBehaviour
 {
 	/// <summary>
 	/// アイコン画像オブジェクト
 	/// </summary>
 	[SerializeField]
-	private Image iconImg;
-
-	DangoInfo.Dango dangoData;
+	private CollectionListIconImg iconImg;
 	/// <summary>
-	/// アイコンクリック時のダイアログ表示用コールバック処理
+	/// アイコンをクリック出来なくするためのマスク
 	/// </summary>
-	private Action<DangoInfo.Dango> showDetailDiaog;
+	[SerializeField]
+	private GameObject mask;
 
 	/// <summary>
 	/// 表示する内容をセットする
 	/// </summary>
 	/// <param name="SIconPath">sアイコン画像のパス</param>
 	/// <param name="action">詳細ダイアログ表示用処理</param>
-	public void SetData( DangoInfo.Dango dango, Action<DangoInfo.Dango> action)
+	public void SetData( DangoInfo.Dango dango, Action<DangoInfo.Dango> showDialog)
 	{
-		this.dangoData = dango;
-		this.showDetailDiaog = action;
+		// まだコレクトしていない場合はマスク表示
+		var isActive = GameManager.Instance.collectDangoIdList.Contains(dango.id);
+		this.mask.SetActive(!isActive);
 
-		// 画像設定（例："Images/enemy/enemy000"）
-		Sprite imgSprite = Resources.Load<Sprite>(this.dangoData.SIconPath);
-
-		this.iconImg.sprite = imgSprite;
-		//Debug.Log("アイコン設定"+imgSprite);
-	}
-
-	/// <summary>
-	/// クリックイベント
-	/// </summary>
-	/// <param name="pointerData"></param>
-	public void OnPointerClick(PointerEventData pointerData)
-	{
-		this.showDetailDiaog(dangoData);
+		// アイコン設定
+		this.iconImg.SetData(dango, (DangoInfo.Dango dango) => { showDialog(dango); });
 	}
 }
