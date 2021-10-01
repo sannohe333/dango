@@ -25,11 +25,11 @@ public class Collection : MonoBehaviour
 
 	void Awake()
 	{
-			/** 既にシーンが読み込まれているかどうか */
-			if (!SceneController.AlreadyLoadScene("Common"))
-			{
-				SceneManager.LoadScene("Common", LoadSceneMode.Additive);
-			}
+		/** 既にシーンが読み込まれているかどうか */
+		if (!SceneController.AlreadyLoadScene("Common"))
+		{
+			SceneManager.LoadScene("Common", LoadSceneMode.Additive);
+		}
 	}
 
 	// Start is called before the first frame update
@@ -59,16 +59,17 @@ public class Collection : MonoBehaviour
 	/// </summary>
 	/// <param name="dango"></param>
 	private void ShowDetailDialog(DangoInfo.Dango dango){
-		Debug.Log("ダイアログ表示"+dango.id);
-
+		// ダイアログの表示設定
+		this.detailDialog.SetData(dango.name,dango.infoText,dango.LIconPath,dango.rank);
 	}
 
 	// Update is called once per frame
 	void Update()
-	{
-			if(Input.GetMouseButtonDown(0))
-			{
-					
-			}
+	{/*
+		if(Input.GetMouseButtonDown(0))
+		{
+				
+		}
+		*/
 	}
 }
