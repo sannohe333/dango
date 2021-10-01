@@ -81,7 +81,7 @@ public class DangoInfo
 		dango4.id = 3;
 		dango4.name = "しろダンゴムシ";
 		dango4.infoText = "しろダンゴムシの\n紹介テキスト";
-		dango4.rank = 3;
+		dango4.rank = 4;
 		dango4.SIconPath = "Image/DangoIcon/sirodango_S";
 		dango4.MIconPath = "Image/DangoIcon/sirodango_M";
 		dango4.LIconPath = "Image/DangoIcon/sirodango_L";
