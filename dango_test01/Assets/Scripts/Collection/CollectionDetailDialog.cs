@@ -73,9 +73,9 @@ public class CollectionDetailDialog : MonoBehaviour
 	}
 
 	/// <summary>
-	/// 
+	/// ランクアイコンの表示設定
 	/// </summary>
-	/// <param name="rankValue"></param>
+	/// <param name="rankValue">ランクをintで指定</param>
 	private void SetRankIcon(int rankValue){
 		
 		for (int i = 0; this.rankIcons.Length > i; ++i)
