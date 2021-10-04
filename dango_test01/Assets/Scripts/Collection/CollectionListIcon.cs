@@ -25,11 +25,11 @@ public class CollectionListIcon : MonoBehaviour
 	/// <param name="action">詳細ダイアログ表示用処理</param>
 	public void SetData( DangoInfo.Dango dango, Action<DangoInfo.Dango> showDialog)
 	{
-		// まだコレクトしていない場合はマスク表示
+		// まだコレクトしていない場合はマスク表示（マスク表示されてるときは画像クリックできない）
 		var isActive = GameManager.Instance.collectDangoIdList.Contains(dango.id);
 		this.mask.SetActive(!isActive);
 
-		// アイコン設定
+		// アイコン画像の表示・クリック設定
 		this.iconImg.SetData(dango, (DangoInfo.Dango dango) => { showDialog(dango); });
 	}
 }

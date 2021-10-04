@@ -1,11 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Linq;
-using System;
-using UnityEngine.EventSystems;
-
 
 public class Collection : MonoBehaviour
 {
@@ -18,10 +12,16 @@ public class Collection : MonoBehaviour
 	private CollectionDetailDialog detailDialog;
 
 	/// <summary>
-	/// アイコン一覧の親オブジェクト
+	/// 一覧に表示するアイコン画像
 	/// </summary>
 	[SerializeField]
-	private GameObject listIconsParent;
+	private GameObject dangoIconPanel;
+
+	/// <summary>
+	/// 一覧に表示するアイコン画像の親
+	/// </summary>
+	[SerializeField]
+	private GameObject dangoIconPanelParent;
 
 	void Awake()
 	{
@@ -38,20 +38,17 @@ public class Collection : MonoBehaviour
 		// ダンゴムシ情報作成
 		this.dangoInfo.SetDangoList();
 
-		// TODO：とりあえず、アイコン一覧プレハブの数分ループしてるけど、DangoListの数でループした方がいい気もする
-		// アイコン一覧の表示設定
-		CollectionListIcon[] icons = this.listIconsParent.GetComponentsInChildren<CollectionListIcon>();
-		for (var i = 0 ; i < icons.Length; ++i){
-			// 登録ダンゴムシ情報の数を超えたらループ終了
-			if (this.dangoInfo.dangoList.Count <= i) break;
-
-			// TODO：まだ取得してないダンゴムシの場合の処理
+		// ダンゴムシ情報を回して、シーンに一覧アイコンを表示する
+		for (var i = 0; dangoInfo.dangoList.Count > i; ++i)
+		{
+			// プレハブをシーンに生成
+			var iconPanel = Instantiate<GameObject>(this.dangoIconPanel);
+			iconPanel.transform.SetParent(this.dangoIconPanelParent.transform, false);
 
 			// アイコン画像設定
-			icons[i].SetData(this.dangoInfo.dangoList[i],(DangoInfo.Dango dango)=>{
-
-				//見取得の場合アイコンにマスク
-
+			CollectionListIcon icon = iconPanel.GetComponent<CollectionListIcon>();
+			icon.SetData(this.dangoInfo.dangoList[i], (DangoInfo.Dango dango) =>
+			{
 				//　ダンゴ詳細ダイアログ設定
 				this.ShowDetailDialog(dango);
 			});
@@ -65,15 +62,5 @@ public class Collection : MonoBehaviour
 	private void ShowDetailDialog(DangoInfo.Dango dango){
 		// ダイアログの表示設定
 		this.detailDialog.SetData(dango.name,dango.infoText,dango.LIconPath,dango.rank);
-	}
-
-	// Update is called once per frame
-	void Update()
-	{/*
-		if(Input.GetMouseButtonDown(0))
-		{
-				
-		}
-		*/
 	}
 }
