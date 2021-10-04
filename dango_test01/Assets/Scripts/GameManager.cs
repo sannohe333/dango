@@ -19,7 +19,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
     public bool debug_mode;
 
     /// <summary>
-    /// test用で初期値入れてる
+    /// コレクトしたダンゴキャラのIDを代入。
+    /// ※このIDはDangoInfoクラスで設定されているDangoInfo.Dango.idの値を見ている
+    /// （とりあえずテスト用で初期値入れてる）
     /// </summary>
 	public List<int> collectDangoIdList = new List<int>{0,2};
 
