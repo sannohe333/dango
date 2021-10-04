@@ -86,5 +86,16 @@ public class DangoInfo
 		dango4.MIconPath = "Image/DangoIcon/sirodango_M";
 		dango4.LIconPath = "Image/DangoIcon/sirodango_L";
 		this.dangoList.Add(dango4);
+
+		Dango dango5 = new Dango();
+		dango5.id = 4;
+		dango5.name = "トゲ付きダンゴムシ";
+		dango5.infoText = "トゲ付きダンゴムシの\n紹介テキスト";
+		dango5.rank = 4;
+		dango5.SIconPath = "Image/DangoIcon/togedango_S";
+		dango5.MIconPath = "Image/DangoIcon/togedango_M";
+		dango5.LIconPath = "Image/DangoIcon/togedango_L";
+		this.dangoList.Add(dango5);
+
 	}
 }
