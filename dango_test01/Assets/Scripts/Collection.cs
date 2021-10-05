@@ -61,6 +61,6 @@ public class Collection : MonoBehaviour
 	/// <param name="dango"></param>
 	private void ShowDetailDialog(DangoInfo.Dango dango){
 		// ダイアログの表示設定
-		this.detailDialog.SetData(dango.name,dango.infoText,dango.LIconPath,dango.rank);
+		this.detailDialog.SetData(dango.id, dango.name,dango.infoText,dango.LIconPath,dango.rank);
 	}
 }
