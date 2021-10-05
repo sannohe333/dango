@@ -36,29 +36,28 @@ public class CollectionDetailDialog : MonoBehaviour
 	PrevDangoModel currentModel;
 
 	/// <summary>
-	/// ダンゴ3dプレハブが表示される親オブジェクト
+	/// ダンゴ3dプレハブが生成される親オブジェクト
 	/// </summary>
 	[SerializeField]
 	private GameObject normalModelParent;
 
 	/// <summary>
-	/// ダンゴ3dプレハブが表示される親オブジェクト
+	/// ダンゴ丸まり3dプレハブが生成される親オブジェクト
 	/// </summary>
 	[SerializeField]
 	private GameObject maruModelParent;
 
+	/// <summary>
+	/// モデルの投影画像
+	/// </summary>
+	[SerializeField]
+	private CollectionDetailDialogModel ModelRawImage;
 
 	/// <summary>
 	/// コレクションアイテム名テキスト
 	/// </summary>
 	[SerializeField]
 	private Text itemName;
-
-	/// <summary>
-	/// アイテム画像
-	/// </summary>
-	[SerializeField]
-	private Image itemImg;
 
 	/// <summary>
 	/// アイテム情報テキスト
@@ -92,29 +91,41 @@ public class CollectionDetailDialog : MonoBehaviour
 	/// 表示する内容をセットする
 	/// </summary>
 	public void SetData(int dangoId, string nameText,string infoText,string imgPath,int rankValue){
-		//アイテム名テキスト
+		// アイテム名テキスト
 		this.itemName.text = nameText;
-		//情報テキスト
+		// 情報テキスト
 		this.infoText.text = infoText;
-		// 画像設定（例："Images/enemy/enemy000"）
-		this.itemImg.sprite = Resources.Load<Sprite>(imgPath);
+		// ランク値
 		this.rank = rankValue;
 
 		// 閉じるボタンのイベント登録(前の登録分削除してから再登録)
 		this.closeBtn.onClick.RemoveAllListeners();
 		this.closeBtn.onClick.AddListener(this.ToggleActive);
 
+		// 現在選択中のモデルデータ
 		this.currentModel = GetModelData(dangoId);
 
-		//
+		// モデルデータを設定する
 		this.Set3DModel(dangoId);
+
+		//
+		this.SetModelRawImage();
 
 		//ランクアイコンを配列に取得
 		this.rankIcons = this.rankIconParent.GetComponentsInChildren<RankIcon>();
 		this.SetRankIcon(this.rank);
+
 		// ダイアログを表示
 		this.ToggleActive();
-		
+	}
+	private void SetModelRawImage()
+	{
+		this.ModelRawImage.SetData(this.ClickModel);
+	}
+
+	private void ClickModel()
+	{
+		Debug.Log("モデルクリック！！！");
 	}
 
 	/// <summary>
@@ -139,10 +150,17 @@ public class CollectionDetailDialog : MonoBehaviour
 	private void Set3DModel(int dangoId){
 		// 古いモデルオブジェクトをまず削除
 		this.DeleteChildren(this.normalModelParent.transform);
+		this.DeleteChildren(this.maruModelParent.transform);
 
 		// プレハブをシーンに生成
-		var model = Instantiate<GameObject>(this.currentModel.defoltModel);
-		model.transform.SetParent(this.normalModelParent.transform, false);
+		var normalModel = Instantiate<GameObject>(this.currentModel.defoltModel);
+		normalModel.transform.SetParent(this.normalModelParent.transform, false);
+		normalModel.SetActive(true);//ダイアログを開いたときは表示しておく
+
+		// 丸まりモデルプレハブをシーンに生成
+		var maruModel = Instantiate<GameObject>(this.currentModel.marumariModel);
+		maruModel.transform.SetParent(this.maruModelParent.transform, false);
+		maruModel.SetActive(false);//ダイアログを開いたときは非表示にしておく
 	}
 
 	/// <summary>

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1442671581687052527}
   - component: {fileID: 2570075159835637578}
   - component: {fileID: 310267837746643840}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: dango_maru_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2255941143167607381}
-  m_LocalRotation: {x: 0.97357225, y: -1.3344342e-16, z: 1.3344344e-16, w: 0.2283792}
+  m_LocalRotation: {x: 0.9735729, y: 0, z: 0, w: 0.22837643}
   m_LocalPosition: {x: 0.051024187, y: -0.024103109, z: -0.030292278}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 153.597, y: 0, z: 0}
 --- !u!33 &2570075159835637578
 MeshFilter:
   m_ObjectHideFlags: 0
