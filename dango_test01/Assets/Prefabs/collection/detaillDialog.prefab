@@ -779,7 +779,7 @@ MonoBehaviour:
   infoText: {fileID: 2279272862867569129}
   closeBtn: {fileID: 9055687452350358751}
   rankIconParent: {fileID: 4276582147471795176}
-  modelRotateSpeed: {x: 1, y: 0, z: 0}
+  modelRotateSpeed: {x: 0, y: 0.3, z: 0}
 --- !u!1 &6407554103726186745
 GameObject:
   m_ObjectHideFlags: 0

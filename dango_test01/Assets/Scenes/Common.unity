@@ -171,3 +171,4 @@ MonoBehaviour:
   clear_stage_st: 1
   first_open: 0
   debug_mode: 1
+  collectDangoIdList: 0000000001000000020000000300000004000000
