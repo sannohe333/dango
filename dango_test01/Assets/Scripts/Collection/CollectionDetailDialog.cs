@@ -2,34 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-[System.Serializable]
-public class PrevDangoModel{
-	/// <summary>
-	/// ダンゴID
-	/// </summary>
-	public int id;
-	/// <summary>
-	/// 通常時のダンゴモデル
-	/// </summary>	
-	public GameObject defoltModel;
-	/// <summary>
-	/// 丸まり状態のモデル
-	/// </summary>
-	public GameObject marumariModel;
-}
+using System.Threading.Tasks;
 
 /// <summary>
 /// コレクションシーンで表示される、詳細ダイアログ
 /// </summary>
 public class CollectionDetailDialog : MonoBehaviour
 {
-	/// <summary>
-	/// ダンゴ3dプレハブ配列
-	/// </summary>
-	[SerializeField]
-	private PrevDangoModel[] dangoModels;
-
 	/// <summary>
 	/// 現在のダンゴモデルデータ
 	/// </summary>
@@ -90,23 +69,23 @@ public class CollectionDetailDialog : MonoBehaviour
 	/// <summary>
 	/// 表示する内容をセットする
 	/// </summary>
-	public void SetData(int dangoId, string nameText,string infoText,string imgPath,int rankValue){
+	public void SetData(DangoInfo.Dango dangoinfo, PrevDangoModel model){
 		// アイテム名テキスト
-		this.itemName.text = nameText;
+		this.itemName.text = dangoinfo.name;
 		// 情報テキスト
-		this.infoText.text = infoText;
+		this.infoText.text = dangoinfo.infoText;
 		// ランク値
-		this.rank = rankValue;
+		this.rank = dangoinfo.rank;
 
 		// 閉じるボタンのイベント登録(前の登録分削除してから再登録)
 		this.closeBtn.onClick.RemoveAllListeners();
 		this.closeBtn.onClick.AddListener(this.ToggleActive);
 
 		// 現在選択中のモデルデータ
-		this.currentModel = GetModelData(dangoId);
+		this.currentModel = model;
 
 		// モデルデータを設定する
-		this.Set3DModel(dangoId);
+		this.Set3DModel(dangoinfo.id);
 
 		//
 		this.SetModelRawImage();
@@ -118,30 +97,36 @@ public class CollectionDetailDialog : MonoBehaviour
 		// ダイアログを表示
 		this.ToggleActive();
 	}
+
+	/// <summary>
+	/// 3dモデルを画像として投影しているRender Textureを持ったrawイメージの設定
+	/// （クリックイベント渡してる）
+	/// </summary>
 	private void SetModelRawImage()
 	{
 		this.ModelRawImage.SetData(this.ClickModel);
 	}
 
-	private void ClickModel()
-	{
-		Debug.Log("モデルクリック！！！");
-	}
-
 	/// <summary>
-	/// 該当ダンゴのモデルを取り出し
-	/// </summary>
-	/// <param name="dangoId">id</param>
-	private PrevDangoModel GetModelData(int dangoId){
-		PrevDangoModel resModel = null;
+	/// 3dモデルが投影されているrowimgをクリックしたときの処理
+	/// </summary>	
+	private async void ClickModel()
+	{
+		Debug.Log("rawimageをクリック！！！"+this.currentModel.id);
+		//　ノーマルモデルを非表示。丸まりモデルを表示
+		this.normalModelObj.SetActive(false);
+		this.maruModelObj.SetActive(true);
 
-		foreach (PrevDangoModel model in dangoModels){
-			if(model.id != dangoId) continue;
-			resModel = model;
-		}
+		//　x秒待機
+		await Task.Delay(2000);
 
-		return resModel;
+		//　ノーマルモデルを表示。丸まりモデルを非表示
+		this.normalModelObj.SetActive(true);
+		this.maruModelObj.SetActive(false);
 	}
+
+	private GameObject normalModelObj;
+	private GameObject maruModelObj;
 
 	/// <summary>
 	/// 3Dモデルを設定する
@@ -153,14 +138,14 @@ public class CollectionDetailDialog : MonoBehaviour
 		this.DeleteChildren(this.maruModelParent.transform);
 
 		// プレハブをシーンに生成
-		var normalModel = Instantiate<GameObject>(this.currentModel.defoltModel);
-		normalModel.transform.SetParent(this.normalModelParent.transform, false);
-		normalModel.SetActive(true);//ダイアログを開いたときは表示しておく
+		this.normalModelObj = Instantiate<GameObject>(this.currentModel.defoltModel);
+		this.normalModelObj.transform.SetParent(this.normalModelParent.transform, false);
+		this.normalModelObj.SetActive(true);//ダイアログを開いたときは表示しておく
 
 		// 丸まりモデルプレハブをシーンに生成
-		var maruModel = Instantiate<GameObject>(this.currentModel.marumariModel);
-		maruModel.transform.SetParent(this.maruModelParent.transform, false);
-		maruModel.SetActive(false);//ダイアログを開いたときは非表示にしておく
+		this.maruModelObj = Instantiate<GameObject>(this.currentModel.marumariModel);
+		this.maruModelObj.transform.SetParent(this.maruModelParent.transform, false);
+		this.maruModelObj.SetActive(false);//ダイアログを開いたときは非表示にしておく
 	}
 
 	/// <summary>

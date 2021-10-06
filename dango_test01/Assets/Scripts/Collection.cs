@@ -1,9 +1,32 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[System.Serializable]
+public class PrevDangoModel
+{
+	/// <summary>
+	/// ダンゴID
+	/// </summary>
+	public int id;
+	/// <summary>
+	/// 通常時のダンゴモデル
+	/// </summary>	
+	public GameObject defoltModel;
+	/// <summary>
+	/// 丸まり状態のモデル
+	/// </summary>
+	public GameObject marumariModel;
+}
+
 public class Collection : MonoBehaviour
 {
 	DangoInfo dangoInfo = new DangoInfo();
+
+	/// <summary>
+	/// ダンゴ3dプレハブ配列
+	/// </summary>
+	[SerializeField]
+	private PrevDangoModel[] dangoModels;
 
 	/// <summary>
 	/// コレクション詳細ダイアログ
@@ -60,7 +83,26 @@ public class Collection : MonoBehaviour
 	/// </summary>
 	/// <param name="dango"></param>
 	private void ShowDetailDialog(DangoInfo.Dango dango){
+		PrevDangoModel model = this.GetModelData(dango.id);
 		// ダイアログの表示設定
-		this.detailDialog.SetData(dango.id, dango.name,dango.infoText,dango.LIconPath,dango.rank);
+		this.detailDialog.SetData(dango, model);
+	}
+
+	/// <summary>
+	/// 該当ダンゴのモデルを取り出し
+	/// </summary>
+	/// <param name="dangoId">id</param>
+	private PrevDangoModel GetModelData(int dangoId)
+	{
+		PrevDangoModel resModel = null;
+
+		foreach (PrevDangoModel model in this.dangoModels)
+		{
+			if (model.id != dangoId) continue;
+			resModel = model;
+			break;
+		}
+
+		return resModel;
 	}
 }
