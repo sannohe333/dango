@@ -123,7 +123,7 @@ public class CollectionDetailDialog : MonoBehaviour
 	/// </summary>
 	private void SetModelRawImage()
 	{
-		this.ModelRawImage.SetData(this.ClickModel);
+		this.ModelRawImage.SetData(this.ClickModelToggle);
 	}
 
 	/// <summary>
@@ -131,7 +131,6 @@ public class CollectionDetailDialog : MonoBehaviour
 	/// </summary>	
 	private async void ClickModel()
 	{
-		Debug.Log("rawimageをクリック！！！"+this.currentModel.id);
 		//　ノーマルモデルを非表示。丸まりモデルを表示
 		this.normalModelParent.SetActive(false);
 		this.maruModelParent.SetActive(true);
@@ -142,6 +141,18 @@ public class CollectionDetailDialog : MonoBehaviour
 		//　ノーマルモデルを表示。丸まりモデルを非表示
 		this.normalModelParent.SetActive(true);
 		this.maruModelParent.SetActive(false);
+	}
+
+	/// <summary>
+	/// ノーマルモデルがアクティブなら、ノーマルを非表示。丸まりを表示
+	/// ノーマルモデルがディーセーブルなら、ノーマルを表示。丸まりを非表示
+	/// </summary>
+	private void ClickModelToggle(){
+		bool isActive = this.normalModelParent.activeSelf;
+
+		this.normalModelParent.SetActive(!isActive);
+		this.maruModelParent.SetActive(isActive);
+
 	}
 
 	/// <summary>
