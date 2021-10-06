@@ -15,6 +15,12 @@ public class CollectionDetailDialog : MonoBehaviour
 	PrevDangoModel currentModel;
 
 	/// <summary>
+	/// 全モデルの親オブジェクト
+	/// </summary>
+	[SerializeField]
+	private Transform AllModelParent;
+
+	/// <summary>
 	/// ダンゴ3dプレハブが生成される親オブジェクト
 	/// </summary>
 	[SerializeField]
@@ -67,6 +73,12 @@ public class CollectionDetailDialog : MonoBehaviour
 	private int rank = 0;
 
 	/// <summary>
+	/// モデルの回転スピード
+	/// </summary>
+	[SerializeField]
+	private Vector3 modelRotateSpeed = new Vector3(0.0f, 0.3f, 0.0f);
+
+	/// <summary>
 	/// 表示する内容をセットする
 	/// </summary>
 	public void SetData(DangoInfo.Dango dangoinfo, PrevDangoModel model){
@@ -87,7 +99,7 @@ public class CollectionDetailDialog : MonoBehaviour
 		// モデルデータを設定する
 		this.Set3DModel(dangoinfo.id);
 
-		//
+		// モデルを投影するrowimgの設定
 		this.SetModelRawImage();
 
 		//ランクアイコンを配列に取得
@@ -96,6 +108,13 @@ public class CollectionDetailDialog : MonoBehaviour
 
 		// ダイアログを表示
 		this.ToggleActive();
+	}
+
+	/// <summary>
+	/// モデルを回転させる
+	/// </summary>	
+	public void RotateModel(){
+		AllModelParent.Rotate(this.modelRotateSpeed, Space.Self);
 	}
 
 	/// <summary>
@@ -114,19 +133,16 @@ public class CollectionDetailDialog : MonoBehaviour
 	{
 		Debug.Log("rawimageをクリック！！！"+this.currentModel.id);
 		//　ノーマルモデルを非表示。丸まりモデルを表示
-		this.normalModelObj.SetActive(false);
-		this.maruModelObj.SetActive(true);
+		this.normalModelParent.SetActive(false);
+		this.maruModelParent.SetActive(true);
 
 		//　x秒待機
 		await Task.Delay(2000);
 
 		//　ノーマルモデルを表示。丸まりモデルを非表示
-		this.normalModelObj.SetActive(true);
-		this.maruModelObj.SetActive(false);
+		this.normalModelParent.SetActive(true);
+		this.maruModelParent.SetActive(false);
 	}
-
-	private GameObject normalModelObj;
-	private GameObject maruModelObj;
 
 	/// <summary>
 	/// 3Dモデルを設定する
@@ -138,14 +154,14 @@ public class CollectionDetailDialog : MonoBehaviour
 		this.DeleteChildren(this.maruModelParent.transform);
 
 		// プレハブをシーンに生成
-		this.normalModelObj = Instantiate<GameObject>(this.currentModel.defoltModel);
-		this.normalModelObj.transform.SetParent(this.normalModelParent.transform, false);
-		this.normalModelObj.SetActive(true);//ダイアログを開いたときは表示しておく
+		var normalModelObj = Instantiate<GameObject>(this.currentModel.defoltModel);
+		normalModelObj.transform.SetParent(this.normalModelParent.transform, false);
+		this.normalModelParent.SetActive(true);//ダイアログを開いたときは表示しておく
 
 		// 丸まりモデルプレハブをシーンに生成
-		this.maruModelObj = Instantiate<GameObject>(this.currentModel.marumariModel);
-		this.maruModelObj.transform.SetParent(this.maruModelParent.transform, false);
-		this.maruModelObj.SetActive(false);//ダイアログを開いたときは非表示にしておく
+		var maruModelObj = Instantiate<GameObject>(this.currentModel.marumariModel);
+		maruModelObj.transform.SetParent(this.maruModelParent.transform, false);
+		this.maruModelParent.SetActive(false);//ダイアログを開いたときは非表示にしておく
 	}
 
 	/// <summary>

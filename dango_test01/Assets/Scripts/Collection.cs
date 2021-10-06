@@ -62,7 +62,7 @@ public class Collection : MonoBehaviour
 		this.dangoInfo.SetDangoList();
 
 		// ダンゴムシ情報を回して、シーンに一覧アイコンを表示する
-		for (var i = 0; dangoInfo.dangoList.Count > i; ++i)
+		for (var i = 0; this.dangoInfo.dangoList.Count > i; ++i)
 		{
 			// プレハブをシーンに生成
 			var iconPanel = Instantiate<GameObject>(this.dangoIconPanel);
@@ -75,6 +75,13 @@ public class Collection : MonoBehaviour
 				//　ダンゴ詳細ダイアログ設定
 				this.ShowDetailDialog(dango);
 			});
+		}
+	}
+
+	public void Update(){
+		// 詳細ダイアログのモデルを回転(詳細ダイアログがアクティブの時だけ実行)
+		if(this.detailDialog.gameObject.activeSelf){
+			this.detailDialog.RotateModel();
 		}
 	}
 
