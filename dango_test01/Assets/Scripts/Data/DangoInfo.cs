@@ -60,7 +60,7 @@ public class DangoInfo
 		Dango dango2 = new Dango();
 		dango2.id = 1;
 		dango2.name = "あおいろダンゴムシ";
-		dango2.infoText = "あおいろダンゴムシの\n紹介テキスト";
+		dango2.infoText = "かっこいい\nあおいダンゴムシ\nでも、じつは\n病気なんだって・・・！";
 		dango2.rank = 2;
 		dango2.SIconPath = "Image/DangoIcon/aodango_S";
 		dango2.MIconPath = "Image/DangoIcon/aodango_M";
