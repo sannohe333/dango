@@ -86,6 +86,18 @@ public class Collection : MonoBehaviour
 	}
 
 	/// <summary>
+	/// アタッチされたビヘイビアを破棄すると、ゲームまたはシーンがOnDestroyを受け取ります。
+	/// </summary>
+	public void OnDestroy(){
+		/*　メモ：userData.jsonにセーブするコード。
+		UserDataInfo userData = new UserDataInfo();
+		userData.clearStage = GameManager.Instance.clear_stage_st;
+		userData.collectDangoIdList = GameManager.Instance.collectDangoIdList;
+		userData.SaveUserData(userData);
+		*/
+	}
+
+	/// <summary>
 	/// ダンゴ詳細ダイアログ表示（アイコンクリック時のコールバック処理）
 	/// </summary>
 	/// <param name="dango"></param>
