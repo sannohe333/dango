@@ -421,14 +421,14 @@ MonoBehaviour:
     marumariModel: {fileID: 920794474905236054, guid: 532138e00637d604c9103571686d0ef2,
       type: 3}
   - id: 2
-    defoltModel: {fileID: 3111634107223589262, guid: f9287ce16a0362e46bc6b417496665ae,
-      type: 3}
-    marumariModel: {fileID: 4633986521958489656, guid: 702ec69127485444497c5031a4901b03,
-      type: 3}
-  - id: 3
     defoltModel: {fileID: 1170513034922808441, guid: 0f418373c93f879459beef71f377d077,
       type: 3}
     marumariModel: {fileID: 959717032426318261, guid: 20672e4562fa65a4884cdc905b79e404,
+      type: 3}
+  - id: 3
+    defoltModel: {fileID: 3111634107223589262, guid: f9287ce16a0362e46bc6b417496665ae,
+      type: 3}
+    marumariModel: {fileID: 4633986521958489656, guid: 702ec69127485444497c5031a4901b03,
       type: 3}
   - id: 4
     defoltModel: {fileID: 6027852294792348525, guid: 64b5d3e8688188a4391db537d2fd9784,

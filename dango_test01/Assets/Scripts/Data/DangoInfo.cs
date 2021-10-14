@@ -69,22 +69,22 @@ public class DangoInfo
 
 		Dango dango3 = new Dango();
 		dango3.id = 2;
-		dango3.name = "ちゃいろダンゴムシ";
-		dango3.infoText = "ちゃいろダンゴムシの\n紹介テキスト";
-		dango3.rank = 3;
-		dango3.SIconPath = "Image/DangoIcon/akadango_S";
-		dango3.MIconPath = "Image/DangoIcon/akadango_M";
-		dango3.LIconPath = "Image/DangoIcon/akadango_L";
+		dango3.name = "しろダンゴムシ";
+		dango3.infoText = "しろダンゴムシの\n紹介テキスト";
+		dango3.rank = 4;
+		dango3.SIconPath = "Image/DangoIcon/sirodango_S";
+		dango3.MIconPath = "Image/DangoIcon/sirodango_M";
+		dango3.LIconPath = "Image/DangoIcon/sirodango_L";
 		this.dangoList.Add(dango3);
 
 		Dango dango4 = new Dango();
 		dango4.id = 3;
-		dango4.name = "しろダンゴムシ";
-		dango4.infoText = "しろダンゴムシの\n紹介テキスト";
-		dango4.rank = 4;
-		dango4.SIconPath = "Image/DangoIcon/sirodango_S";
-		dango4.MIconPath = "Image/DangoIcon/sirodango_M";
-		dango4.LIconPath = "Image/DangoIcon/sirodango_L";
+		dango4.name = "ちゃいろダンゴムシ";
+		dango4.infoText = "ちゃいろダンゴムシの\n紹介テキスト";
+		dango4.rank = 3;
+		dango4.SIconPath = "Image/DangoIcon/akadango_S";
+		dango4.MIconPath = "Image/DangoIcon/akadango_M";
+		dango4.LIconPath = "Image/DangoIcon/akadango_L";
 		this.dangoList.Add(dango4);
 
 		Dango dango5 = new Dango();
