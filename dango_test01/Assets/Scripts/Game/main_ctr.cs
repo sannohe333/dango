@@ -418,14 +418,13 @@ public class main_ctr : MonoBehaviour
 	/// <summary>
 	// ダンゴムシ生成メソッド
 	/// </summary>
-	void dango_born(){
-		GameObject _dango;
-		
-		int _dangoType = Random.Range(0,4);
+	private void dango_born(){
 		// ダンゴムシ生成
+		GameObject _dango;
+		int _dangoType = Random.Range(0,4);
 		_dango = Object.Instantiate(DangoTypeList[_dangoType]) as GameObject;
-		
-		// ダンゴムシにレアと、ダンゴムシidを設定
+
+		// ダンゴムシにレアフラグを設定
 		_dango.GetComponent<dango>().rare_state = _dangoType > 0; //dangoidが0のものだけfalse;
 
 		// ステージサイズによってダンゴムシの表示位置を指定する
