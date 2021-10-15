@@ -237,12 +237,12 @@ public class main_ctr : MonoBehaviour
 				StageNumText.text = "STAGE 0"+stage_num.ToString();
 					//ステージサイズによるカメラの固定位置
 				if(GameObject.Find ("size_s")){
-					stage_size_st=0;
+					this.stage_size_st = 0;
 					cam_pos2=new Vector3( 0f, 34f, -5f );
 					//シーンの影の強さ調整
 					QualitySettings.shadowDistance=54f;
 				}else if(GameObject.Find ("size_m")){
-					stage_size_st=1;
+					this.stage_size_st = 1;
 					cam_pos2=new Vector3( 0f, 46f, -8f );
 					//シーンの影の強さ調整
 					QualitySettings.shadowDistance=64f;
@@ -419,60 +419,42 @@ public class main_ctr : MonoBehaviour
 	// ダンゴムシ生成メソッド
 	/// </summary>
 	void dango_born(){
-
-		GameObject copied;
+		GameObject _dango;
 		
-		int f1=Random.Range(0,6);
-		if(f1==0){
-			copied = Object.Instantiate(DangoTypeList[1]) as GameObject;
-			dango _dango = copied.GetComponent<dango>();
-			_dango.rare_state = true;
-			_dango.dangoId = 0;
-		}else if(f1==1){
-			copied = Object.Instantiate(DangoTypeList[2]) as GameObject;
-			dango _dango = copied.GetComponent<dango>();
-			_dango.rare_state = true;
-			_dango.dangoId = 1;
-		}else if(f1==2){
-			copied = Object.Instantiate(DangoTypeList[3]) as GameObject;
-			dango _dango = copied.GetComponent<dango>();
-			_dango.rare_state = true;
-			_dango.dangoId = 2;
-		}else if(f1==3){
-			copied = Object.Instantiate(DangoTypeList[4]) as GameObject;
-			dango _dango = copied.GetComponent<dango>();
-			_dango.rare_state = true;
-			_dango.dangoId = 3;
-		}else{
-			copied = Object.Instantiate(DangoTypeList[0]) as GameObject;
-		}
-			
+		int _dangoType = Random.Range(0,4);
+		// ダンゴムシ生成
+		_dango = Object.Instantiate(DangoTypeList[_dangoType]) as GameObject;
+		
+		// ダンゴムシにレアと、ダンゴムシidを設定
+		_dango.GetComponent<dango>().rare_state = _dangoType > 0; //dangoidが0のものだけfalse;
 
-		if(stage_size_st==0){
-			copied.transform.Translate(Random.Range(-4,4), 7, Random.Range(-4,4));
-			int f=Random.Range(0,4);
-			if(f==0){
-				copied.transform.Rotate(0, 90, 0);
-					
-			}else if(f==1){
-				copied.transform.Rotate(0, -90, 0);
-					
-			}else if(f==2){
-				copied.transform.Rotate(0, 180, 0);
-						
-			}
-		}else if(stage_size_st==1){
-			copied.transform.Translate(Random.Range(-6,6), 7, Random.Range(-6,6));
-			int f=Random.Range(0,4);
-			if(f==0){
-				copied.transform.Rotate(0, 90, 0);
-			}else if(f==1){
-				copied.transform.Rotate(0, -90, 0);
-			}else if(f==2){
-				copied.transform.Rotate(0, 180, 0);
-			}
+		// ステージサイズによってダンゴムシの表示位置を指定する
+		if(this.stage_size_st == 0)
+		{
+			// ダンゴムシの表示位置
+			_dango.transform.Translate(Random.Range(-4,4), 7, Random.Range(-4,4));
 		}
-		copied.transform.SetParent(Stage.transform, false);
+		else if(this.stage_size_st == 1)
+		{
+			_dango.transform.Translate(Random.Range(-6,6), 7, Random.Range(-6,6));
+		}
+
+		// ダンゴムシの回転
+		int _rotateType = Random.Range(0, 3);
+		if (_rotateType == 0)
+		{
+			_dango.transform.Rotate(0, 90, 0);
+		}
+		else if (_rotateType == 1)
+		{
+			_dango.transform.Rotate(0, -90, 0);
+		}
+		else if (_rotateType == 2)
+		{
+			_dango.transform.Rotate(0, 180, 0);
+		}
+
+		_dango.transform.SetParent(Stage.transform, false);
 	}
 
 	public void EatEff()

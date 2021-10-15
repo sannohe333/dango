@@ -6179,9 +6179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b475e1be1e84e4f9bf2fc007c32c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dangoId: 2
   timeOut: 1
   speed: 2
   roll: 0
+  rare_state: 0
   rb: {fileID: 0}
 --- !u!65 &7673746484698768960
 BoxCollider:
