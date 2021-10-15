@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [System.Serializable]
-public class PrevDangoModel
+public struct PrevDangoModel
 {
 	/// <summary>
 	/// ダンゴID
@@ -113,7 +113,10 @@ public class Collection : MonoBehaviour
 	/// <param name="dangoId">id</param>
 	private PrevDangoModel GetModelData(int dangoId)
 	{
-		PrevDangoModel resModel = null;
+		PrevDangoModel resModel;
+		resModel.id = 0;
+		resModel.marumariModel = null;
+		resModel.defoltModel = null;
 
 		foreach (PrevDangoModel model in this.dangoModels)
 		{

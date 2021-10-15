@@ -81,6 +81,8 @@ public class CollectionDetailDialog : MonoBehaviour
 	/// <summary>
 	/// 表示する内容をセットする
 	/// </summary>
+	/// <param name="dangoinfo">該当キャラの情報</param>
+	/// <param name="model">モデルの型</param>
 	public void SetData(DangoInfo.Dango dangoinfo, PrevDangoModel model){
 		// アイテム名テキスト
 		this.itemName.text = dangoinfo.name;
