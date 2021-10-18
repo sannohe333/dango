@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 詳細画面に表示されるダンゴ虫情報の構造体
+/// </summary>
 [System.Serializable]
 public struct PrevDangoModel
 {
@@ -18,6 +21,9 @@ public struct PrevDangoModel
 	public GameObject marumariModel;
 }
 
+/// <summary>
+/// 	コレクションシーンクラス
+/// </summary>
 public class Collection : MonoBehaviour
 {
 	DangoInfo dangoInfo = new DangoInfo();

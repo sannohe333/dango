@@ -25,19 +25,29 @@ public class dango : MonoBehaviour
 	public float speed = 2f;
 	public float roll;
 
-	//移動中
-	private bool move_st; 
+	/// <summary>
+	/// 移動中
+	/// </summary>
+	private bool move_st;
 
-	//ゲームスタート時
-	private bool start_st; 
+	/// <summary>
+	/// ゲームスタート時
+	/// </summary>
+	private bool start_st;
 
-	//落下判定
-	private bool fall_st; 
+	/// <summary>
+	/// 落下判定
+	/// </summary>
+	private bool fall_st;
 
-	//食べられた
+	/// <summary>
+	/// 食べられた
+	/// </summary>
 	private bool eat_destroy;
 
-	//レア
+	/// <summary>
+	/// レア
+	/// </summary>
 	public bool rare_state;
 
 	//捕食エリアに入っている時
