@@ -6,11 +6,6 @@ using UnityEngine.SceneManagement;
 public class main_ctr : MonoBehaviour
 {
 	/// <summary>
-	/// タッチエフェクト用オブジェクト
-	/// </summary>
-	public GameObject prefab;
-
-	/// <summary>
 	/// Scoreスクリプトアクセス用
 	/// </summary>	
 	private Score  Score;
@@ -216,16 +211,6 @@ public class main_ctr : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		//タッチエフェクト
-		if(Input.GetMouseButtonDown(0))
-		{
-			//マウスカーソルの位置を取得。
-			var mousePosition = Input.mousePosition;
-			mousePosition.z = 5f;
-			GameObject clone = Instantiate(prefab, Camera.main.ScreenToWorldPoint(mousePosition),Quaternion.identity);
-			//Destroy(clone, deleteTime);
-		}
-
 		switch (state)
 		{
 			case 0:
