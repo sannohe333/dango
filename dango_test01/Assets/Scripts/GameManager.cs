@@ -4,15 +4,21 @@ using System.Collections.Generic;
 
 public class GameManager : SingletonMonoBehaviour<GameManager> {
 
-	//プレイするステージ
+	/// <summary>
+	/// プレイするステージ
+	/// </summary>
 	[HideInInspector]
 	public int stage_st;
 
-	//クリアーしたステージ
+	/// <summary>
+	/// クリアーしたステージ
+	/// </summary>
 	[HideInInspector]
 	public int clear_stage_st;
 
-	//初オープンステージ
+	/// <summary>
+	/// 初オープンステージ
+	/// </summary>
 	[HideInInspector]
 	public bool first_open;
 
@@ -28,33 +34,52 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 
 	void Start()
 	{
-		// UNITYエディタ以外で実行
-#if !UNITY_EDITOR
+		// UNITYエディタで実行
+#if UNITY_EDITOR
 		stage_st=0;
 		clear_stage_st=0;
 		first_open=false;
 
 		// UNITYエディタ以外で実行
-# else
-		// ユーザー情報をjsonから受け取る
-		UserDataInfo _userDataInfo = new UserDataInfo();
-		UserDataInfo.User _user = new UserDataInfo.User();
-		_user = _userDataInfo.LoadUserData();
-		GameManager.Instance.clear_stage_st = _user.clearStage;
-		GameManager.Instance.collectDangoIdList = _user.collectDangoIdList;
+#else
+		this.LoadUserData();
 #endif
-
-	}
-
-	void Update()
-	{
-		//Debug.Log("stage_st="+stage_st+" : clear_stage_st="+clear_stage_st);
 	}
 
 	/// <summary>
 	/// アタッチされたビヘイビアを破棄すると、ゲームまたはシーンがOnDestroyを受け取ります。
 	/// </summary>
 	public void OnDestroy()
+	{
+#if UNITY_EDITOR
+		this.SaveUserData();
+#endif
+	}
+
+	/// <summary>
+	/// 読み込み時、ユーザー情報を読み込む
+	/// </summary>
+	private void LoadUserData()
+	{
+		// ユーザー情報をjsonから受け取る
+		UserDataInfo _userDataInfo = new UserDataInfo();
+		UserDataInfo.User _user = new UserDataInfo.User();
+		_user = _userDataInfo.LoadUserData();
+		// 自身に受け取り
+		Instance.clear_stage_st = _user.clearStage;
+		Instance.collectDangoIdList = _user.collectDangoIdList;
+
+		Debug.Log(clear_stage_st);
+		foreach (var i in Instance.collectDangoIdList)
+		{
+			Debug.Log(i);
+		}
+	}
+
+	/// <summary>
+	/// シーン終了時、ユーザー情報を保存する
+	/// </summary>	
+	private void SaveUserData()
 	{
 		Debug.Log("デストロイ");
 		// userData.jsonにセーブするコード。
