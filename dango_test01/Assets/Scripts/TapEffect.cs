@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 /// <summary>
 /// 画面タップエフェクト表示クラス
