@@ -313,6 +313,8 @@ public class main_ctr : MonoBehaviour
 							//stage_num++;
 							GameManager.Instance.clear_stage_st=stage_num+1;
 					}*/
+					
+					//　新たなステージを開放したら、ユーザー情報を更新する
 					if(stage_num!=StageList.Count){
 						if(GameManager.Instance.clear_stage_st==stage_num){
 							GameManager.Instance.clear_stage_st=stage_num+1;

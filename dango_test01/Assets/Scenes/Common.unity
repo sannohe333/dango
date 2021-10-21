@@ -244,7 +244,7 @@ MonoBehaviour:
   stage_st: 0
   clear_stage_st: 1
   first_open: 0
-  debug_mode: 1
+  debug_mode: 0
   collectDangoIdList: 00000000010000000200000003000000040000000a00000008000000
 --- !u!1 &1547290900
 GameObject:

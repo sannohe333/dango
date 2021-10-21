@@ -36,13 +36,18 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	{
 		// UNITYエディタで実行
 #if UNITY_EDITOR
-		stage_st=0;
-		clear_stage_st=0;
-		first_open=false;
-
+		if(Instance.debug_mode){
+			stage_st = 0;
+			clear_stage_st = 0;
+			first_open = false;
+		}
+		else
+		{
+			// シーン読み込んだらjsonのユーザーデータをロードする
+			this.LoadUserData();
+		}
 		// UNITYエディタ以外で実行
 #else
-		this.LoadUserData();
 #endif
 	}
 
@@ -51,9 +56,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	/// </summary>
 	public void OnDestroy()
 	{
-#if UNITY_EDITOR
 		this.SaveUserData();
-#endif
 	}
 
 	/// <summary>
@@ -68,12 +71,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 		// 自身に受け取り
 		Instance.clear_stage_st = _user.clearStage;
 		Instance.collectDangoIdList = _user.collectDangoIdList;
-
-		Debug.Log(clear_stage_st);
-		foreach (var i in Instance.collectDangoIdList)
-		{
-			Debug.Log(i);
-		}
 	}
 
 	/// <summary>
@@ -81,7 +78,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	/// </summary>	
 	private void SaveUserData()
 	{
-		Debug.Log("デストロイ");
 		// userData.jsonにセーブするコード。
 		UserDataInfo _userDataInfo = new UserDataInfo();
 		UserDataInfo.User _user = new UserDataInfo.User();
