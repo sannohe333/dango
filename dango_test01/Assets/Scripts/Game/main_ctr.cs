@@ -245,6 +245,11 @@ public class main_ctr : MonoBehaviour
 					EnemyObject.transform.SetParent(Stage.transform, false);
 					EnemyObject.transform.Translate(0, 1, -5);
 					danger_panel.SetActive(true);
+				}else if(EnemyEntryList[stage_num-1]==2){    
+					GameObject EnemyObject = Object.Instantiate(EnemyList[1]) as GameObject;
+					EnemyObject.transform.SetParent(Stage.transform, false);
+					EnemyObject.transform.Translate(0, 1, 0);
+					danger_panel.SetActive(true);
 				}
 				state=6;
 							
@@ -408,7 +413,7 @@ public class main_ctr : MonoBehaviour
 	private void dango_born(){
 		// ダンゴムシ生成
 		GameObject _dango;
-		int _dangoType = Random.Range(0,4);
+		int _dangoType = Random.Range(0,7);
 		_dango = Object.Instantiate(DangoTypeList[_dangoType]) as GameObject;
 
 		// ダンゴムシにレアフラグを設定

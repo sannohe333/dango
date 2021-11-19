@@ -8352,14 +8352,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef8539267a2c104784c6f59aa5628c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tapEffectPrefab: {fileID: 4542503602637027512, guid: 4aaa33906890bdb47a7e4492e1d0dd22,
-    type: 3}
   DangoTypeList:
   - {fileID: 2088632208750706355, guid: 867435f5b0c27bb479ab1c29666b3c2b, type: 3}
   - {fileID: 7602372871042069781, guid: 8d147bc0cda6f5b47a8dd55ac5b8da72, type: 3}
   - {fileID: 7673746484698768965, guid: eb57cf2985c1be8459002f3cd7853375, type: 3}
   - {fileID: 9092120231826234606, guid: 627227bfe452ee74e82680b6f4be4261, type: 3}
   - {fileID: 5281158087445783636, guid: 6cfaa6d11091ccf4199871c728d37b1b, type: 3}
+  - {fileID: 2088632208750706355, guid: 7feaac7255dc9f44bb822e3192c2bbe2, type: 3}
+  - {fileID: 2088632208750706355, guid: bb9740e326079474bb316470186ce6f6, type: 3}
+  - {fileID: 2088632208750706355, guid: 52ce41a9063ec5e4ba9ab8486a360feb, type: 3}
   ui_fade: {fileID: 226380901}
   pose_menu_obj: {fileID: 0}
   danger_panel: {fileID: 1261586923}
@@ -8388,6 +8389,7 @@ MonoBehaviour:
   EnemyEntryList: 000000000000000000000000000000000000000000000000010000000100000001000000000000000000000000000000
   EnemyList:
   - {fileID: 8061723022952465705, guid: c8497ed65786aa849b7fca027679848f, type: 3}
+  - {fileID: 291120268427417333, guid: 4b4cd8687fc72204eb1504406789d7bc, type: 3}
   eat_area_st: 0
   eat_effect: {fileID: 5712742778381661404, guid: 5db062e90b690654c874c39652815979,
     type: 3}
