@@ -461,19 +461,19 @@ MonoBehaviour:
     marumariModel: {fileID: 4633986521958489656, guid: 70134360c3612fd4c8cc7a38d2960297,
       type: 3}
   - id: 10
-    defoltModel: {fileID: 6027852294792348525, guid: 64b5d3e8688188a4391db537d2fd9784,
+    defoltModel: {fileID: 3111634107223589262, guid: 76a2c6e95eebda047875b03e805e5f07,
       type: 3}
-    marumariModel: {fileID: 2255941143167607381, guid: 80ff60e8b3471b247b15d4da148d899a,
+    marumariModel: {fileID: 4633986521958489656, guid: a15b4671436d5ed42baf3e9a69356736,
       type: 3}
   - id: 11
-    defoltModel: {fileID: 6027852294792348525, guid: 64b5d3e8688188a4391db537d2fd9784,
+    defoltModel: {fileID: 3111634107223589262, guid: 204d4c99345c6a149919c71f68e680cf,
       type: 3}
-    marumariModel: {fileID: 2255941143167607381, guid: 80ff60e8b3471b247b15d4da148d899a,
+    marumariModel: {fileID: 4633986521958489656, guid: 2d440d78648914a43860cf69792bc865,
       type: 3}
   - id: 12
-    defoltModel: {fileID: 6027852294792348525, guid: 64b5d3e8688188a4391db537d2fd9784,
+    defoltModel: {fileID: 3111634107223589262, guid: 175756b15d20f994c844260fa4ed482c,
       type: 3}
-    marumariModel: {fileID: 2255941143167607381, guid: 80ff60e8b3471b247b15d4da148d899a,
+    marumariModel: {fileID: 4633986521958489656, guid: e880e7fe0d7e9e2499e7bc3ccda02a3b,
       type: 3}
   - id: 13
     defoltModel: {fileID: 6027852294792348525, guid: 64b5d3e8688188a4391db537d2fd9784,
