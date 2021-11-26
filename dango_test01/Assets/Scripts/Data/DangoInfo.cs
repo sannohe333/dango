@@ -69,8 +69,8 @@ public class DangoInfo
 
 		Dango dango3 = new Dango();
 		dango3.id = 2;
-		dango3.name = "しろダンゴムシ";
-		dango3.infoText = "しろダンゴムシの\n紹介テキスト";
+		dango3.name = "アルビノ";
+		dango3.infoText = "アルビノの\n紹介テキスト";
 		dango3.rank = 4;
 		dango3.SIconPath = "Image/DangoIcon/sirodango_S";
 		dango3.MIconPath = "Image/DangoIcon/sirodango_M";
@@ -119,8 +119,8 @@ public class DangoInfo
 
 		Dango dango8 = new Dango();
 		dango8.id = 7;
-		dango8.name = "トゲ付きダンゴムシ";
-		dango8.infoText = "トゲ付きダンゴムシの\n紹介テキスト";
+		dango8.name = "アルビノ部分白化1";
+		dango8.infoText = "部分白化ダンゴムシ1の\n紹介テキスト";
 		dango8.rank = 4;
 		dango8.SIconPath = "Image/DangoIcon/dangoThamb7_S";
 		dango8.MIconPath = "Image/DangoIcon/dangoThamb7_M";
@@ -129,8 +129,8 @@ public class DangoInfo
 
 		Dango dango9 = new Dango();
 		dango9.id = 8;
-		dango9.name = "トゲ付きダンゴムシ";
-		dango9.infoText = "トゲ付きダンゴムシの\n紹介テキスト";
+		dango9.name = "アルビノ部分白化2";
+		dango9.infoText = "部分白化ダンゴムシ2の\n紹介テキスト";
 		dango9.rank = 4;
 		dango9.SIconPath = "Image/DangoIcon/dangoThamb8_S";
 		dango9.MIconPath = "Image/DangoIcon/dangoThamb8_M";
@@ -139,8 +139,8 @@ public class DangoInfo
 
 		Dango dango10 = new Dango();
 		dango10.id = 9;
-		dango10.name = "トゲ付きダンゴムシ";
-		dango10.infoText = "トゲ付きダンゴムシの\n紹介テキスト";
+		dango10.name = "ダンゴムシ";
+		dango10.infoText = "ダンゴムシの\n紹介テキスト";
 		dango10.rank = 4;
 		dango10.SIconPath = "Image/DangoIcon/dangoThamb9_S";
 		dango10.MIconPath = "Image/DangoIcon/dangoThamb9_M";
@@ -149,32 +149,32 @@ public class DangoInfo
 
 		Dango dango11 = new Dango();
 		dango11.id = 10;
-		dango11.name = "トゲ付きダンゴムシ";
-		dango11.infoText = "トゲ付きダンゴムシの\n紹介テキスト";
+		dango11.name = "レモンブルー";
+		dango11.infoText = "レモンブルーの\n紹介テキスト";
 		dango11.rank = 4;
-		dango11.SIconPath = "Image/DangoIcon/togedango_S";
-		dango11.MIconPath = "Image/DangoIcon/togedango_M";
-		dango11.LIconPath = "Image/DangoIcon/togedango_L";
+		dango11.SIconPath = "Image/DangoIcon/dangoThamb10_S";
+		dango11.MIconPath = "Image/DangoIcon/dangoThamb10_M";
+		dango11.LIconPath = "Image/DangoIcon/dangoThamb10_L";
 		this.dangoList.Add(dango11);
 
 		Dango dango12 = new Dango();
 		dango12.id = 11;
-		dango12.name = "トゲ付きダンゴムシ";
-		dango12.infoText = "トゲ付きダンゴムシの\n紹介テキスト";
+		dango12.name = "アンバーダッキー";
+		dango12.infoText = "アンバーダッキーの\n紹介テキスト";
 		dango12.rank = 4;
-		dango12.SIconPath = "Image/DangoIcon/togedango_S";
-		dango12.MIconPath = "Image/DangoIcon/togedango_M";
-		dango12.LIconPath = "Image/DangoIcon/togedango_L";
+		dango12.SIconPath = "Image/DangoIcon/dangoThamb11_S";
+		dango12.MIconPath = "Image/DangoIcon/dangoThamb11_M";
+		dango12.LIconPath = "Image/DangoIcon/dangoThamb11_L";
 		this.dangoList.Add(dango12);
 
 		Dango dango13 = new Dango();
 		dango13.id = 12;
-		dango13.name = "トゲ付きダンゴムシ";
-		dango13.infoText = "トゲ付きダンゴムシの\n紹介テキスト";
+		dango13.name = "ラバーダッキー";
+		dango13.infoText = "ラバーダッキー\n紹介テキスト\nアヒルのおもちゃに似てる";
 		dango13.rank = 4;
-		dango13.SIconPath = "Image/DangoIcon/togedango_S";
-		dango13.MIconPath = "Image/DangoIcon/togedango_M";
-		dango13.LIconPath = "Image/DangoIcon/togedango_L";
+		dango13.SIconPath = "Image/DangoIcon/dangoThamb12_S";
+		dango13.MIconPath = "Image/DangoIcon/dangoThamb12_M";
+		dango13.LIconPath = "Image/DangoIcon/dangoThamb12_L";
 		this.dangoList.Add(dango13);
 
 		Dango dango14 = new Dango();
